@@ -3,8 +3,8 @@
   "description": "A modular and maintainable Vue 3 web application codebase, featuring reusable components, scalable folder structure, and state management using best practices for modern web development",
   "version": "0.0.1",
   "license": "MIT",
-  "private": true,
   "type": "module",
+  "main": "src/main.ts",
   "author": {
     "name": "Harry",
     "email": "harrydng1209@gmail.com",
