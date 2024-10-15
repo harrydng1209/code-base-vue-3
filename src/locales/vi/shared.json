@@ -4,5 +4,8 @@
     "dashboard": "Bảng điều khiển",
     "settings": "Cài đặt",
     "search": "Tìm kiếm"
+  },
+  "navigator": {
+    "baseComponent": "Thành phần cơ sở"
   }
 }

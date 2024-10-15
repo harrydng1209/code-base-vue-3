@@ -129,7 +129,7 @@ const handleGetHealthCheck = useDebounceFn(async () => {
     </section>
 
     <section>
-      <h4>-- Icon --</h4>
+      <h4>-- Icons --</h4>
       <div class="tw-flex tw-gap-2">
         <BaseIconSvg
           :path="constants.shared.ICON_PATHS.SHARED_DELETE"
@@ -150,7 +150,7 @@ const handleGetHealthCheck = useDebounceFn(async () => {
     </section>
 
     <section>
-      <h4>-- Button --</h4>
+      <h4>-- Buttons --</h4>
       <div class="tw-mb-4">
         <BaseButton type="primary" @click="handleClickButton">Primary</BaseButton>
         <BaseButton type="info" @click="handleClickButton">Info</BaseButton>
@@ -230,7 +230,7 @@ const handleGetHealthCheck = useDebounceFn(async () => {
     </section>
 
     <section>
-      <h4>-- Select --</h4>
+      <h4>-- Selects --</h4>
       <BaseSelect
         v-model="baseSelect"
         :options="baseSelectOptions"
@@ -240,14 +240,14 @@ const handleGetHealthCheck = useDebounceFn(async () => {
     </section>
 
     <section>
-      <h4>-- Checkbox --</h4>
+      <h4>-- Checkboxes --</h4>
       <BaseCheckbox v-model="baseCheckbox" @change="handleChangeCheckbox">
         checkbox label
       </BaseCheckbox>
     </section>
 
     <section>
-      <h4>-- Switch --</h4>
+      <h4>-- Switches --</h4>
       <BaseSwitch v-model="baseSwitch" activeText="switch label" @change="handleChangeSwitch" />
     </section>
 
@@ -262,7 +262,7 @@ const handleGetHealthCheck = useDebounceFn(async () => {
     </section>
 
     <section>
-      <h4>-- DatePicker --</h4>
+      <h4>-- DatePickers --</h4>
       <BaseDatePicker
         v-model="baseDatePicker"
         placeholder="Pick a day"
@@ -271,7 +271,7 @@ const handleGetHealthCheck = useDebounceFn(async () => {
     </section>
 
     <section>
-      <h4>-- TimePicker --</h4>
+      <h4>-- TimePickers --</h4>
       <BaseTimePicker
         v-model="baseTimePicker"
         placeholder="Pick a time"
@@ -280,7 +280,7 @@ const handleGetHealthCheck = useDebounceFn(async () => {
     </section>
 
     <section>
-      <h4>-- Dialog --</h4>
+      <h4>-- Dialogs --</h4>
       <BaseButton plain @click="baseDialog = true">Click to open the Dialog</BaseButton>
       <BaseDialog v-model="baseDialog" title="Dialog Title" width="500">
         <span>This is a dialog content</span>
@@ -294,7 +294,7 @@ const handleGetHealthCheck = useDebounceFn(async () => {
     </section>
 
     <section>
-      <h4>-- Table --</h4>
+      <h4>-- Tables --</h4>
       <BaseTable :data="tableData" height="300" rowKey="date">
         <ElTableColumn type="index" width="50" />
         <ElTableColumn prop="date" label="Date" width="120" />
@@ -318,7 +318,7 @@ const handleGetHealthCheck = useDebounceFn(async () => {
     </section>
 
     <section>
-      <h4>-- Form validate --</h4>
+      <h4>-- Forms --</h4>
       <ElForm @submit="onSubmit" labelWidth="auto">
         <BaseFormItem name="email" label="Email">
           <template #default="{ modelValue, updateModelValue }">

@@ -4,5 +4,8 @@
     "dashboard": "ダッシュボード",
     "settings": "設定",
     "search": "検索"
+  },
+  "navigator": {
+    "baseComponent": "ベースコンポーネント"
   }
 }

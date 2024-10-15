@@ -18,25 +18,11 @@ const { t } = useI18n();
         <template #title>{{ t('shared.dashboard') }}</template>
       </ElMenuItem>
 
-      <ElMenuItem index="2">
+      <ElMenuItem :index="constants.routePages.BASE_PAGE">
         <ElIcon>
-          <BaseIconSvg :path="constants.shared.ICON_PATHS.LAYOUTS_DASHBOARD" />
+          <BaseIconSvg :path="constants.shared.ICON_PATHS.LAYOUTS_FOLDER_SHARED" />
         </ElIcon>
-        <template #title>Navigator Two</template>
-      </ElMenuItem>
-
-      <ElMenuItem index="3">
-        <ElIcon>
-          <BaseIconSvg :path="constants.shared.ICON_PATHS.LAYOUTS_DASHBOARD" />
-        </ElIcon>
-        <template #title>Navigator Three</template>
-      </ElMenuItem>
-
-      <ElMenuItem index="4">
-        <ElIcon>
-          <BaseIconSvg :path="constants.shared.ICON_PATHS.LAYOUTS_DASHBOARD" />
-        </ElIcon>
-        <template #title>Navigator Four</template>
+        <template #title>{{ t('navigator.baseComponent') }}</template>
       </ElMenuItem>
     </ElMenu>
   </div>
