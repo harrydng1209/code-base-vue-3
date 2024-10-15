@@ -2,15 +2,15 @@
   height: calc(100% - 24px);
 
   .el-menu {
-    height: calc(100% - 30px - $base-margin - (24px * 3));
+    height: calc(100% - 30px - $base-layout-margin - (24px * 3));
     border-right: 0;
-    background-color: var(--qh-background-container-color);
+    background-color: var(--v-background-container-color);
   }
 
   &__logo {
-    width: var(--el-aside-width);
-    height: 84px;
-    margin: 16px 0;
+    width: 24px;
+    height: 24px;
+    margin: 20px auto;
     cursor: pointer;
     @include flexbox-style;
   }

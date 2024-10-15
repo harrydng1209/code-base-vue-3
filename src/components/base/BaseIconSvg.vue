@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import useTheme from '@/composables/use-theme';
-import { defineProps, shallowRef, watch } from 'vue';
-import type { Component } from 'vue';
 
 type TIcons = Record<string, () => Promise<{ default: Component }>>;
 

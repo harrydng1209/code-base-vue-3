@@ -32,14 +32,15 @@ const shared = {
     BLACK: '#000'
   },
   LOCAL_STORAGE_KEYS: {
-    TOKEN: 'qh-token',
-    THEME: 'qh-theme',
-    LANGUAGE: 'qh-language'
+    TOKEN: 'v-token',
+    THEME: 'v-theme',
+    LANGUAGE: 'v-language'
   },
   ICON_PATHS: {
     SHARED_DELETE: 'shared/IconDelete',
     SHARED_LIGHT_MODE: 'shared/IconLightMode',
     SHARED_DARK_MODE: 'shared/IconDarkMode',
+    SHARED_LOGO: 'shared/IconLogo',
     LAYOUTS_DASHBOARD: 'layouts/IconDashboard',
     LAYOUTS_FOLDER_SHARED: 'layouts/IconFolderShared',
     LAYOUTS_SETTINGS: 'layouts/IconSettings',

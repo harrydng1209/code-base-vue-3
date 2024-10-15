@@ -3,7 +3,7 @@ body {
   font-weight: $base-font-weight;
   font-optical-sizing: auto;
   font-style: normal;
-  background-color: var(--qh-background-body-color);
+  background-color: var(--v-background-body-color);
 }
 
 body::-webkit-scrollbar {
@@ -11,7 +11,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: var(--qh-scrollbar-color);
+  background-color: var(--v-scrollbar-color);
   border-radius: 50px;
 }
 

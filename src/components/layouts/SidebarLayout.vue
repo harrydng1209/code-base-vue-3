@@ -7,7 +7,9 @@ const { t } = useI18n();
 <template>
   <div class="sidebar-layout">
     <div class="sidebar-layout__logo">
-      <img src="@/assets/images/logo.png" alt="logo" width="84" height="84" />
+      <RouterLink :to="constants.routePages.HOME_PAGE">
+        <BaseIconSvg :path="constants.shared.ICON_PATHS.SHARED_LOGO" />
+      </RouterLink>
     </div>
 
     <ElMenu default-active="1" :collapse="false" :router="true">

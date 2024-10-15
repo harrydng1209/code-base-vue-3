@@ -1,5 +1,3 @@
-import { computed, watch } from 'vue';
-import { useI18n } from 'vue-i18n';
 import { useLocalStorage } from '@vueuse/core';
 import { ELanguageCode } from '@/models/enums/shared.enum';
 
