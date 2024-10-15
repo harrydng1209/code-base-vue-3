@@ -1,0 +1,8 @@
+{
+  "hello": "Hello",
+  "shared": {
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "search": "Search"
+  }
+}

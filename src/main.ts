@@ -1,14 +1,16 @@
-import './assets/main.css'
+import '@/assets/styles/root/main.scss';
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import App from '@/App.vue';
+import { createPinia } from 'pinia';
+import routerPlugin from '@/plugins/router.plugin';
+import i18nPlugin from '@/plugins/i18n.plugin';
+import tippyPlugin from '@/plugins/tippy.plugin';
 
-import App from './App.vue'
-import router from './router'
+const app = createApp(App);
 
-const app = createApp(App)
+app.use(createPinia());
+app.use(routerPlugin);
+app.use(i18nPlugin);
+app.use(tippyPlugin);
 
-app.use(createPinia())
-app.use(router)
-
-app.mount('#app')
+app.mount('#app');

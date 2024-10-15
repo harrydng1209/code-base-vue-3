@@ -22,5 +22,25 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest'
+  },
+  rules: {
+    '@typescript-eslint/no-explicit-any': 'off',
+    'vue/prop-name-casing': ['error', 'camelCase'],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        varsIgnorePattern: '^_',
+        argsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_'
+      }
+    ],
+    'vue/component-name-in-template-casing': [
+      'error',
+      'PascalCase',
+      {
+        registeredComponentsOnly: false,
+        ignores: []
+      }
+    ]
   }
 }

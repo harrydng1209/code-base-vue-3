@@ -1,0 +1,17 @@
+// light theme
+:root {
+  --qh-text-color: #000;
+  --qh-background-body-color: #e0f8f9;
+  --qh-background-container-color: #fff;
+  --qh-box-shadow-color: #2553b91a;
+  --qh-scrollbar-color: #b0b0b0;
+}
+
+// dark theme
+html.dark {
+  --qh-text-color: #fff;
+  --qh-background-body-color: #16293e;
+  --qh-background-container-color: #111c2d;
+  --qh-box-shadow-color: #2553b91a;
+  --qh-scrollbar-color: #555;
+}

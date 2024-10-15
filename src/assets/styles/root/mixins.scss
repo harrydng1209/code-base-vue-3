@@ -1,0 +1,36 @@
+@mixin text-style(
+  $font-size: $base-font-size,
+  $font-weight: $base-font-weight,
+  $color: var(--qh-text-color),
+  $font-family: $base-font-family
+) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $color;
+  font-family: $font-family;
+}
+
+@mixin flexbox-style(
+  $gap: 0,
+  $justify-content: center,
+  $align-items: center,
+  $flex-direction: row
+) {
+  display: flex;
+  gap: $gap;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $flex-direction;
+}
+
+@mixin text-truncate(
+  $width: 200px,
+  $text-overflow: ellipsis,
+  $overflow: hidden,
+  $white-space: nowrap
+) {
+  width: $width;
+  text-overflow: $text-overflow;
+  overflow: $overflow;
+  white-space: $white-space;
+}

@@ -1,0 +1,24 @@
+body {
+  font-family: $base-font-family;
+  font-weight: $base-font-weight;
+  font-optical-sizing: auto;
+  font-style: normal;
+  background-color: var(--qh-background-body-color);
+}
+
+body::-webkit-scrollbar {
+  width: $base-scrollbar-width;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--qh-scrollbar-color);
+  border-radius: 50px;
+}
+
+h2 {
+  @include text-style(30px, 700);
+}
+
+h4 {
+  @include text-style(20px, 600);
+}
