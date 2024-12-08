@@ -2,7 +2,7 @@ import plugin from 'tailwindcss/plugin';
 
 export default {
   prefix: 'tw-',
-  content: ['./src/**/*.{html,vue,ts}'],
+  content: ['./src/**/*.vue'],
   theme: {
     extend: {}
   },

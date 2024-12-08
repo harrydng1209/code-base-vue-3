@@ -24,6 +24,7 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   rules: {
+    'vue/multi-word-component-names': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
     'vue/prop-name-casing': ['error', 'camelCase'],
     "eol-last": ["error", "always"],

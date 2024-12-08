@@ -4,7 +4,7 @@ import useAuthStore from '@/stores/auth.store';
 import type { ERole } from '@/models/enums/shared.enum';
 import type { App } from 'vue';
 
-const routerPlugin = {
+const vueRouterPlugin = {
   install(app: App) {
     const routes: Array<RouteRecordRaw> = [];
     const modules: Record<string, { default: RouteRecordRaw }> = import.meta.glob('@/routes/*.ts', {
@@ -48,4 +48,4 @@ const routerPlugin = {
   }
 };
 
-export default routerPlugin;
+export default vueRouterPlugin;

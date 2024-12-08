@@ -1,7 +1,7 @@
 import vueTippy from 'vue-tippy';
 import type { App } from 'vue';
 
-const tippyPlugin = {
+const vueTippyPlugin = {
   install(app: App) {
     app.use(vueTippy, {
       directive: 'tippy',
@@ -17,4 +17,4 @@ const tippyPlugin = {
   }
 };
 
-export default tippyPlugin;
+export default vueTippyPlugin;
