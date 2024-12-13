@@ -33,8 +33,7 @@ export default defineConfig({
         {
           '@/constants': [['default', 'constants']],
           '@/utils': [['default', 'utils']],
-          '@/apis': [['default', 'apis']],
-          'string-template': [['default', 'stringFormat']]
+          '@/apis': [['default', 'apis']]
         }
       ]
     }),

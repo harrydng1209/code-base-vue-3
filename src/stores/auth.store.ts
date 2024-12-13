@@ -7,8 +7,6 @@ const useAuthStore = defineStore('authStore', () => {
 
   const isAuthenticated = ref<boolean>(false);
   const userInfo = ref<IUserInfo>();
-  const maxRetries = 3;
-  let retryCount = 0;
 
   const initialize = async () => {
     if (isAuthenticated.value) return;
@@ -22,26 +20,22 @@ const useAuthStore = defineStore('authStore', () => {
       isAuthenticated.value = true;
       userInfo.value = response.data;
     } catch (_error) {
-      const tokenRefreshed = await refreshToken();
-
-      if (tokenRefreshed) {
-        retryCount++;
-
-        if (retryCount <= maxRetries) await initialize();
-      }
+      await refreshToken();
     }
   };
 
   const refreshToken = async (): Promise<boolean> => {
+    let result = true;
+
     try {
       const response = await apis.auth.refreshToken();
       if (!utils.shared.isSuccessResponse(response)) throw new Error(response.error.message);
 
       accessToken.value = response.data.accessToken;
-      return true;
     } catch (_error) {
-      return false;
+      result = false;
     }
+    return result;
   };
 
   const getGetters = () => {
