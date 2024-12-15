@@ -4,8 +4,8 @@ const { isDark } = useTheme();
 </script>
 
 <template>
-  <div class="the-default-sidebar">
-    <div class="the-default-sidebar__logo">
+  <div class="the-sidebar">
+    <div class="the-sidebar__logo">
       <RouterLink :to="constants.routePages.HOME">
         <BaseIconSvg :path="constants.iconPaths.SHARED.LOGO" />
       </RouterLink>
@@ -36,5 +36,5 @@ const { isDark } = useTheme();
 </template>
 
 <style scoped lang="scss">
-@import '@/assets/styles/layouts/the-default-sidebar.scss';
+@import '@/assets/styles/layouts/the-sidebar.scss';
 </style>

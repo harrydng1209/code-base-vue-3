@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { notifications } from '@/mocks/the-default-topbar.mock';
+import { notifications } from '@/mocks/the-topbar.mock';
 import { ELanguageCode } from '@/models/enums/shared.enum';
 
 const { t } = useI18n();
@@ -12,18 +12,18 @@ const i18nOptions = Object.entries(ELanguageCode).map(([key, value]) => ({
   value
 }));
 
-const getIconPathForLanguage = (language: ELanguageCode) => {
+const getIconPathForLanguage = (lang: ELanguageCode) => {
   const iconPaths = {
     [ELanguageCode.English]: constants.iconPaths.LAYOUTS.ENGLISH,
     [ELanguageCode.Vietnamese]: constants.iconPaths.LAYOUTS.VIETNAMESE,
     [ELanguageCode.Japanese]: constants.iconPaths.LAYOUTS.JAPANESE
   };
-  return iconPaths[language];
+  return iconPaths[lang];
 };
 </script>
 
 <template>
-  <div class="the-default-topbar">
+  <div class="the-topbar">
     <section>
       <BaseInput
         v-model="searchInput"
@@ -39,7 +39,7 @@ const getIconPathForLanguage = (language: ELanguageCode) => {
       </BaseInput>
     </section>
 
-    <section class="the-default-topbar__profile">
+    <section class="the-topbar__profile">
       <BaseIconSvg
         :path="
           isDark ? constants.iconPaths.SHARED.LIGHT_MODE : constants.iconPaths.SHARED.DARK_MODE
@@ -111,5 +111,5 @@ const getIconPathForLanguage = (language: ELanguageCode) => {
 </template>
 
 <style scoped lang="scss">
-@import '@/assets/styles/layouts/the-default-topbar.scss';
+@import '@/assets/styles/layouts/the-topbar.scss';
 </style>

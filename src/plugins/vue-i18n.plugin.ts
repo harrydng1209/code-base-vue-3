@@ -7,9 +7,9 @@ const locales: Record<string, { default: Record<string, string> }> = import.meta
   { eager: true }
 );
 const messages: Record<ELanguageCode, Record<string, string>> = Object.values(ELanguageCode).reduce(
-  (accumulator, language) => {
-    accumulator[language] = {};
-    return accumulator;
+  (acc, lang) => {
+    acc[lang] = {};
+    return acc;
   },
   {} as Record<ELanguageCode, Record<string, string>>
 );
