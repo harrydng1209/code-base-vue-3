@@ -25,7 +25,7 @@ module.exports = {
   },
   rules: {
     'no-console': 'warn',
-    'vue/multi-word-component-names': 'error',
+    'vue/multi-word-component-names': 'off',
     '@typescript-eslint/no-explicit-any': 'error',
     'vue/prop-name-casing': ['error', 'camelCase'],
     "eol-last": ["error", "always"],

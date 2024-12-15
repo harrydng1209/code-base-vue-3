@@ -22,10 +22,7 @@ Object.keys(locales).forEach((path) => {
   const locale = match[1] as ELanguageCode;
   const data = locales[path].default;
 
-  if (!Object.values(ELanguageCode).includes(locale)) {
-    console.warn(`Locale '${locale}' is not supported.`);
-    return;
-  }
+  if (!Object.values(ELanguageCode).includes(locale)) return;
 
   if (!messages[locale]) messages[locale] = {};
 

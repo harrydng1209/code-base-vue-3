@@ -1,8 +1,7 @@
-import type { RouteRecordRaw } from 'vue-router';
-import { createRouter, createWebHistory } from 'vue-router';
-import useAuthStore from '@/stores/auth.store';
-import type { ERole } from '@/models/enums/shared.enum';
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 import type { App } from 'vue';
+import useAuthStore from '@/stores/auth.store';
+import type { ERole } from '@/models/enums/auth.enum';
 
 const vueRouterPlugin = {
   install(app: App) {
@@ -22,12 +21,14 @@ const vueRouterPlugin = {
 
     router.beforeEach(async (to, _from, next) => {
       const authStore = useAuthStore();
+      const title = '' + to.meta.title || 'Code Base Vue 3';
+      document.title = title;
 
       if (to.matched.some((item) => item.meta.requiresAuth)) {
         await authStore.initialize();
 
         if (!authStore.getAuthenticated) {
-          next({ path: constants.routePages.HOME });
+          next({ path: constants.routePages.AUTH.LOGIN });
           return;
         }
 

@@ -1,12 +1,11 @@
-import ErrorLayout from '@/layouts/ErrorLayout.vue';
+import Error from '@/layouts/Error.vue';
 
-const notFoundRoute = {
+export default {
   path: '/:pathMatch(.*)*',
-  component: ErrorLayout,
+  component: Error,
   meta: {
     title: 'Page Not Found',
-    requiresAuth: false
+    requiresAuth: false,
+    roles: []
   }
 };
-
-export default notFoundRoute;

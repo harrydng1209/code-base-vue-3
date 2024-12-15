@@ -31,7 +31,10 @@ const getIconPathForLanguage = (language: ELanguageCode) => {
         class="!tw-w-[200px] tw-shadow-lg"
       >
         <template #suffix>
-          <BaseIconSvg :path="constants.shared.ICON_PATHS.LAYOUTS_SEARCH" />
+          <BaseIconSvg
+            :path="constants.shared.ICON_PATHS.LAYOUTS_SEARCH"
+            :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
+          />
         </template>
       </BaseInput>
     </section>
@@ -43,6 +46,7 @@ const getIconPathForLanguage = (language: ELanguageCode) => {
             ? constants.shared.ICON_PATHS.SHARED_LIGHT_MODE
             : constants.shared.ICON_PATHS.SHARED_DARK_MODE
         "
+        :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
         @click="toggleDark()"
       />
 
@@ -70,7 +74,10 @@ const getIconPathForLanguage = (language: ELanguageCode) => {
       <BaseDropdown>
         <span>
           <ElBadge :value="notifications.length">
-            <BaseIconSvg :path="constants.shared.ICON_PATHS.LAYOUTS_NOTIFICATION" />
+            <BaseIconSvg
+              :path="constants.shared.ICON_PATHS.LAYOUTS_NOTIFICATION"
+              :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
+            />
           </ElBadge>
         </span>
 

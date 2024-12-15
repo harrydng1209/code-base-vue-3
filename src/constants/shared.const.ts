@@ -41,6 +41,7 @@ const shared = {
     SHARED_LIGHT_MODE: 'shared/IconLightMode',
     SHARED_DARK_MODE: 'shared/IconDarkMode',
     SHARED_LOGO: 'shared/IconLogo',
+    SHARED_REQUIRED: 'shared/IconRequired',
     LAYOUTS_DASHBOARD: 'layouts/IconDashboard',
     LAYOUTS_FOLDER_SHARED: 'layouts/IconFolderShared',
     LAYOUTS_SETTINGS: 'layouts/IconSettings',
@@ -51,7 +52,8 @@ const shared = {
     LAYOUTS_JAPANESE: 'layouts/IconJapanese'
   },
   SELECTOR_IDS: {
-    TEST_BUTTON_ID: 'test-button'
+    TEST_BUTTON_ID: 'test-button',
+    LOGIN_BUTTON_ID: 'login-button'
   },
   NODE_ENV: {
     DEVELOPMENT: 'development',

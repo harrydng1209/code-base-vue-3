@@ -1,12 +1,11 @@
-import ErrorLayout from '@/layouts/ErrorLayout.vue';
+import Error from '@/layouts/Error.vue';
 
-const forbiddenRoute = {
+export default {
   path: constants.routePages.FORBIDDEN,
-  component: ErrorLayout,
+  component: Error,
   meta: {
     title: 'Forbidden',
-    requiresAuth: false
+    requiresAuth: false,
+    roles: []
   }
 };
-
-export default forbiddenRoute;

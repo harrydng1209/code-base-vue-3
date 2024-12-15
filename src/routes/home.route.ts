@@ -1,12 +1,12 @@
-import GuestLayout from '@/layouts/GuestLayout.vue';
+import { ERole } from '@/models/enums/auth.enum';
+import Default from '@/layouts/Default.vue';
 
-const homeRoute = {
+export default {
   path: constants.routePages.HOME,
-  component: GuestLayout,
+  component: Default,
   meta: {
     title: 'Home',
-    requiresAuth: false
+    requiresAuth: true,
+    roles: [ERole.Employee, ERole.Admin, ERole.Manager]
   }
 };
-
-export default homeRoute;

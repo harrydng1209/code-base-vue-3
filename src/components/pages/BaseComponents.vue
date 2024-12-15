@@ -37,6 +37,7 @@ const { handleSubmit, resetForm } = useForm({
 });
 
 const { t } = useI18n();
+const { isDark } = useTheme();
 
 const baseSelect = ref({ label: 'select label 2', value: 'select value 2' });
 const baseCheckbox = ref<boolean>(false);
@@ -92,8 +93,7 @@ const handleChangePagination = (currentPage: number, pageSize: number) => {
   utils.shared.showToast(`currentPage: ${currentPage} & pageSize: ${pageSize}`);
 };
 
-const onSubmit = handleSubmit((values: unknown) => {
-  console.log('onSubmit:', values);
+const onSubmit = handleSubmit((_values: unknown) => {
   utils.shared.showToast('onSubmit: check console');
 });
 
@@ -121,16 +121,19 @@ const handleGetHealthCheck = useDebounceFn(async () => {
       <div class="tw-flex tw-gap-2">
         <BaseIconSvg
           :path="constants.shared.ICON_PATHS.SHARED_DELETE"
+          :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
           v-tippy="constants.shared.ICON_PATHS.SHARED_DELETE"
           @click="handleClickIconSvg"
         />
         <BaseIconSvg
           :path="constants.shared.ICON_PATHS.LAYOUTS_SEARCH"
+          :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
           v-tippy="constants.shared.ICON_PATHS.LAYOUTS_SEARCH"
           @click="handleClickIconSvg"
         />
         <BaseIconSvg
           :path="constants.shared.ICON_PATHS.LAYOUTS_SETTINGS"
+          :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
           v-tippy="constants.shared.ICON_PATHS.LAYOUTS_SETTINGS"
           @click="handleClickIconSvg"
         />
