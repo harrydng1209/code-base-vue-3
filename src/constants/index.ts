@@ -1,20 +1,20 @@
 import shared from './shared.const';
 import routePages from './route-pages.const';
 import routeApis from './route-apis.const';
-import auth from './auth.const';
+import iconPaths from './icon-paths.const';
 
 interface IConstants {
   shared: typeof shared;
   routePages: typeof routePages;
   routeApis: typeof routeApis;
-  auth: typeof auth;
+  iconPaths: typeof iconPaths;
 }
 
 const constants: IConstants = {
   shared,
   routePages,
   routeApis,
-  auth
+  iconPaths
 };
 
 export default constants;

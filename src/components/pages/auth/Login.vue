@@ -37,7 +37,7 @@ const onSubmit = handleSubmit(async (values: unknown) => {
     if (!utils.shared.isSuccessResponse(response)) throw new Error(response.error.message);
 
     authStore.setToken(response.data.accessToken);
-    await router.push(constants.routePages.DASHBOARD);
+    await router.push(constants.routePages.HOME);
   } catch (_error: unknown) {
     utils.shared.showToast('Login error', EToast.Error);
   }
@@ -53,11 +53,7 @@ const onSubmit = handleSubmit(async (values: unknown) => {
         <BaseFormItem name="email">
           <template #label>
             <span>{{ t('auth.email') }}</span>
-            <BaseIconSvg
-              width="5"
-              height="10"
-              :path="constants.shared.ICON_PATHS.SHARED_REQUIRED"
-            />
+            <BaseIconSvg width="5" height="10" :path="constants.iconPaths.SHARED.REQUIRED" />
           </template>
 
           <template #default="{ modelValue, updateModelValue }">
@@ -72,11 +68,7 @@ const onSubmit = handleSubmit(async (values: unknown) => {
         <BaseFormItem name="password">
           <template #label>
             <span>{{ t('auth.password') }}</span>
-            <BaseIconSvg
-              width="5"
-              height="10"
-              :path="constants.shared.ICON_PATHS.SHARED_REQUIRED"
-            />
+            <BaseIconSvg width="5" height="10" :path="constants.iconPaths.SHARED.REQUIRED" />
           </template>
 
           <template #default="{ modelValue, updateModelValue }">
@@ -92,8 +84,8 @@ const onSubmit = handleSubmit(async (values: unknown) => {
                   height="20"
                   :path="
                     showPassword
-                      ? constants.auth.ICON_PATHS.EYE
-                      : constants.auth.ICON_PATHS.EYE_CLOSED
+                      ? constants.iconPaths.PAGES.AUTH.EYE
+                      : constants.iconPaths.PAGES.AUTH.EYE_CLOSED
                   "
                   @click="togglePasswordVisibility"
                 />
@@ -105,7 +97,7 @@ const onSubmit = handleSubmit(async (values: unknown) => {
         <div>
           <BaseButton
             type="primary"
-            native-type="submit"
+            nativeType="submit"
             class="tw-w-full"
             :id="constants.shared.SELECTOR_IDS.LOGIN_BUTTON_ID"
           >

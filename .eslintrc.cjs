@@ -1,9 +1,9 @@
 /* eslint-env node */
-require('@rushstack/eslint-patch/modern-module-resolution')
+require('@rushstack/eslint-patch/modern-module-resolution');
 
 module.exports = {
   root: true,
-  'extends': [
+  extends: [
     'plugin:vue/vue3-essential',
     'eslint:recommended',
     '@vue/eslint-config-typescript',
@@ -11,13 +11,8 @@ module.exports = {
   ],
   overrides: [
     {
-      files: [
-        'cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}',
-        'cypress/support/**/*.{js,ts,jsx,tsx}'
-      ],
-      'extends': [
-        'plugin:cypress/recommended'
-      ]
+      files: ['cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}', 'cypress/support/**/*.{js,ts,jsx,tsx}'],
+      extends: ['plugin:cypress/recommended']
     }
   ],
   parserOptions: {
@@ -28,7 +23,8 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     '@typescript-eslint/no-explicit-any': 'error',
     'vue/prop-name-casing': ['error', 'camelCase'],
-    "eol-last": ["error", "always"],
+    'vue/attribute-hyphenation': ['error', 'never'],
+    'eol-last': ['error', 'always'],
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
@@ -46,4 +42,4 @@ module.exports = {
       }
     ]
   }
-}
+};

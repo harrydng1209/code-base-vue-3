@@ -14,9 +14,9 @@ const i18nOptions = Object.entries(ELanguageCode).map(([key, value]) => ({
 
 const getIconPathForLanguage = (language: ELanguageCode) => {
   const iconPaths = {
-    [ELanguageCode.English]: constants.shared.ICON_PATHS.LAYOUTS_ENGLISH,
-    [ELanguageCode.Vietnamese]: constants.shared.ICON_PATHS.LAYOUTS_VIETNAMESE,
-    [ELanguageCode.Japanese]: constants.shared.ICON_PATHS.LAYOUTS_JAPANESE
+    [ELanguageCode.English]: constants.iconPaths.LAYOUTS.ENGLISH,
+    [ELanguageCode.Vietnamese]: constants.iconPaths.LAYOUTS.VIETNAMESE,
+    [ELanguageCode.Japanese]: constants.iconPaths.LAYOUTS.JAPANESE
   };
   return iconPaths[language];
 };
@@ -28,11 +28,11 @@ const getIconPathForLanguage = (language: ELanguageCode) => {
       <BaseInput
         v-model="searchInput"
         :placeholder="`${t('shared.search')}...`"
-        class="!tw-w-[200px] tw-shadow-lg"
+        class="!tw-w-[200px]"
       >
         <template #suffix>
           <BaseIconSvg
-            :path="constants.shared.ICON_PATHS.LAYOUTS_SEARCH"
+            :path="constants.iconPaths.LAYOUTS.SEARCH"
             :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
           />
         </template>
@@ -42,9 +42,7 @@ const getIconPathForLanguage = (language: ELanguageCode) => {
     <section class="the-default-topbar__profile">
       <BaseIconSvg
         :path="
-          isDark
-            ? constants.shared.ICON_PATHS.SHARED_LIGHT_MODE
-            : constants.shared.ICON_PATHS.SHARED_DARK_MODE
+          isDark ? constants.iconPaths.SHARED.LIGHT_MODE : constants.iconPaths.SHARED.DARK_MODE
         "
         :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
         @click="toggleDark()"
@@ -75,7 +73,7 @@ const getIconPathForLanguage = (language: ELanguageCode) => {
         <span>
           <ElBadge :value="notifications.length">
             <BaseIconSvg
-              :path="constants.shared.ICON_PATHS.LAYOUTS_NOTIFICATION"
+              :path="constants.iconPaths.LAYOUTS.NOTIFICATION"
               :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
             />
           </ElBadge>

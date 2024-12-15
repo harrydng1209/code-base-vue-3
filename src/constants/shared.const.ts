@@ -36,21 +36,6 @@ const shared = {
     THEME: 'v-theme',
     LANGUAGE: 'v-language'
   },
-  ICON_PATHS: {
-    SHARED_DELETE: 'shared/IconDelete',
-    SHARED_LIGHT_MODE: 'shared/IconLightMode',
-    SHARED_DARK_MODE: 'shared/IconDarkMode',
-    SHARED_LOGO: 'shared/IconLogo',
-    SHARED_REQUIRED: 'shared/IconRequired',
-    LAYOUTS_DASHBOARD: 'layouts/IconDashboard',
-    LAYOUTS_FOLDER_SHARED: 'layouts/IconFolderShared',
-    LAYOUTS_SETTINGS: 'layouts/IconSettings',
-    LAYOUTS_SEARCH: 'layouts/IconSearch',
-    LAYOUTS_NOTIFICATION: 'layouts/IconNotification',
-    LAYOUTS_ENGLISH: 'layouts/IconEnglish',
-    LAYOUTS_VIETNAMESE: 'layouts/IconVietnamese',
-    LAYOUTS_JAPANESE: 'layouts/IconJapanese'
-  },
   SELECTOR_IDS: {
     TEST_BUTTON_ID: 'test-button',
     LOGIN_BUTTON_ID: 'login-button'
@@ -58,8 +43,7 @@ const shared = {
   NODE_ENV: {
     DEVELOPMENT: 'development',
     PRODUCTION: 'production'
-  },
-  ERROR_CODES: {}
+  }
 } as const;
 
 export default shared;

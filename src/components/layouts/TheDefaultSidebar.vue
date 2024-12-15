@@ -7,25 +7,25 @@ const { isDark } = useTheme();
   <div class="the-default-sidebar">
     <div class="the-default-sidebar__logo">
       <RouterLink :to="constants.routePages.HOME">
-        <BaseIconSvg :path="constants.shared.ICON_PATHS.SHARED_LOGO" />
+        <BaseIconSvg :path="constants.iconPaths.SHARED.LOGO" />
       </RouterLink>
     </div>
 
-    <ElMenu default-active="1" :collapse="false" :router="true">
-      <ElMenuItem :index="constants.routePages.DASHBOARD">
+    <ElMenu defaultActive="1" :collapse="false" :router="true">
+      <ElMenuItem :index="constants.routePages.AUTH.LOGIN">
         <ElIcon>
           <BaseIconSvg
-            :path="constants.shared.ICON_PATHS.LAYOUTS_DASHBOARD"
+            :path="constants.iconPaths.LAYOUTS.DASHBOARD"
             :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
           />
         </ElIcon>
-        <template #title>{{ t('shared.dashboard') }}</template>
+        <template #title>{{ t('navigator.login') }}</template>
       </ElMenuItem>
 
       <ElMenuItem :index="constants.routePages.BASE_COMPONENTS">
         <ElIcon>
           <BaseIconSvg
-            :path="constants.shared.ICON_PATHS.LAYOUTS_FOLDER_SHARED"
+            :path="constants.iconPaths.LAYOUTS.FOLDER_SHARED"
             :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
           />
         </ElIcon>

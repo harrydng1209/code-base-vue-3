@@ -3,10 +3,10 @@ import type { TLoadingTarget, TSuccessResponse } from '@/models/types/shared.typ
 import qs from 'qs';
 import storeService from '@/services/store.service';
 import { EToast } from '@/models/enums/shared.enum';
-import { ElNotification, ElLoading } from 'element-plus';
 import { capitalize } from 'lodash-es';
 import type { IFailureResponse } from '@/models/interfaces/shared.interface';
 import stringFormat from 'string-template';
+import { ElLoading, ElNotification } from 'element-plus';
 
 const shared = {
   isSuccessResponse<T, M>(

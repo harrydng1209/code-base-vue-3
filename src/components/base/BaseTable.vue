@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<IProps>(), {
     :data="props.data"
     :defaultExpandAll="true"
     :border="true"
+    headerRowClassName="header-row-class-name"
     v-loading="props.loading"
     v-bind="$attrs"
   >

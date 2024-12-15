@@ -6,7 +6,7 @@ export default {
   component: Default,
   meta: {
     title: 'Home',
-    requiresAuth: true,
+    requiresAuth: false,
     roles: [ERole.Employee, ERole.Admin, ERole.Manager]
   }
 };
