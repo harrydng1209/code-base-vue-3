@@ -1,18 +1,19 @@
-import vueTippy from 'vue-tippy';
 import type { App } from 'vue';
+
+import vueTippy from 'vue-tippy';
 
 const vueTippyPlugin = {
   install(app: App) {
     app.use(vueTippy, {
-      directive: 'tippy',
       component: 'tippy',
       componentSingleton: 'tippy-singleton',
       defaultProps: {
-        placement: 'top',
         allowHTML: true,
-        theme: 'material',
-        duration: [200, 200]
-      }
+        duration: [200, 200],
+        placement: 'top',
+        theme: 'material'
+      },
+      directive: 'tippy'
     });
   }
 };

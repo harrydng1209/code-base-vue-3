@@ -1,5 +1,6 @@
-import { ELanguageCode } from '@/models/enums/shared.enum';
 import type { App } from 'vue';
+
+import { ELanguageCode } from '@/models/enums/shared.enum';
 import { createI18n } from 'vue-i18n';
 
 const locales: Record<string, { default: Record<string, string> }> = import.meta.glob(

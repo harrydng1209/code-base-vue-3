@@ -1,41 +1,43 @@
-import { fileURLToPath, URL } from 'node:url';
-import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import vueDevTools from 'vite-plugin-vue-devtools';
-import autoImport from 'unplugin-auto-import/vite';
-import components from 'unplugin-vue-components/vite';
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import dotenv from 'dotenv';
+import { fileURLToPath, URL } from 'node:url';
+import autoImport from 'unplugin-auto-import/vite';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import components from 'unplugin-vue-components/vite';
+import { defineConfig } from 'vite';
+import vueDevTools from 'vite-plugin-vue-devtools';
 
 dotenv.config();
 
 export default defineConfig({
-  server: {
-    port: Number(process.env.VITE_PORT) || 3000,
-    host: '0.0.0.0'
-  },
-  preview: {
-    port: Number(process.env.VITE_PORT_PREVIEW) || 3030,
-    host: '0.0.0.0'
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @import "./src/assets/styles/root/variables.scss";
+          @import "./src/assets/styles/root/mixins.scss";
+        `
+      }
+    }
   },
   plugins: [
     vue(),
     vueDevTools(),
     autoImport({
-      vueTemplate: true,
       dirs: ['src/composables/**'],
       dts: 'src/@types/auto-imports.d.ts',
-      resolvers: [ElementPlusResolver()],
       imports: [
         'vue',
         'vue-router',
         'vue-i18n',
         {
+          '@/apis': [['default', 'apis']],
           '@/constants': [['default', 'constants']],
-          '@/utils': [['default', 'utils']],
-          '@/apis': [['default', 'apis']]
+          '@/utils': [['default', 'utils']]
         }
-      ]
+      ],
+      resolvers: [ElementPlusResolver()],
+      vueTemplate: true
     }),
     components({
       dirs: ['src/components/base/**'],
@@ -49,19 +51,17 @@ export default defineConfig({
       ]
     })
   ],
+  preview: {
+    host: '0.0.0.0',
+    port: Number(process.env.VITE_PORT_PREVIEW) || 3030
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `
-          @import "./src/assets/styles/root/variables.scss";
-          @import "./src/assets/styles/root/mixins.scss";
-        `
-      }
-    }
+  server: {
+    host: '0.0.0.0',
+    port: Number(process.env.VITE_PORT) || 3000
   }
 });

@@ -1,18 +1,18 @@
-import Guest from '@/layouts/Guest.vue';
 import Login from '@/components/pages/auth/Login.vue';
+import Guest from '@/layouts/Guest.vue';
 
 export default {
-  path: constants.routePages.AUTH.ROOT,
-  component: Guest,
-  meta: {
-    title: 'Authentication',
-    requiresAuth: false,
-    roles: []
-  },
   children: [
     {
-      path: constants.routePages.AUTH.LOGIN,
-      component: Login
+      component: Login,
+      path: constants.routePages.AUTH.LOGIN
     }
-  ]
+  ],
+  component: Guest,
+  meta: {
+    requiresAuth: false,
+    roles: [],
+    title: 'Authentication'
+  },
+  path: constants.routePages.AUTH.ROOT
 };

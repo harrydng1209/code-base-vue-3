@@ -1,6 +1,7 @@
-import { defineStore } from 'pinia';
-import { useLocalStorage } from '@vueuse/core';
 import type { IUserInfo } from '@/models/interfaces/auth.interface';
+
+import { useLocalStorage } from '@vueuse/core';
+import { defineStore } from 'pinia';
 
 const useAuthStore = defineStore('authStore', () => {
   const accessToken = useLocalStorage(constants.shared.LOCAL_STORAGE_KEYS.ACCESS_TOKEN, '');
@@ -47,16 +48,16 @@ const useAuthStore = defineStore('authStore', () => {
 
   const getActions = () => {
     return {
+      cleanUser: () => {
+        isAuthenticated.value = false;
+        userInfo.value = undefined;
+      },
       setToken: (token: string) => {
         accessToken.value = token;
       },
       setUser: (data: IUserInfo) => {
         isAuthenticated.value = true;
         userInfo.value = data;
-      },
-      cleanUser: () => {
-        isAuthenticated.value = false;
-        userInfo.value = undefined;
       }
     };
   };
