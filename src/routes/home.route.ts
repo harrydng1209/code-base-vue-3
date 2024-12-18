@@ -5,7 +5,7 @@ export default {
   component: Default,
   meta: {
     requiresAuth: false,
-    roles: [ERole.Employee, ERole.Admin, ERole.Manager],
+    roles: [ERole.Admin, ERole.Guest, ERole.Moderator, ERole.SuperAdmin, ERole.User],
     title: 'Home'
   },
   path: constants.routePages.HOME

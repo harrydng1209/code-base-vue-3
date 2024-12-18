@@ -4,17 +4,17 @@ import type { App } from 'vue';
 import useAuthStore from '@/stores/auth.store';
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 
+const routes: Array<RouteRecordRaw> = [];
+const modules: Record<string, { default: RouteRecordRaw }> = import.meta.glob('@/routes/*.ts', {
+  eager: true
+});
+
+Object.keys(modules).forEach((key) => {
+  routes.push(modules[key].default);
+});
+
 const vueRouterPlugin = {
   install(app: App) {
-    const routes: Array<RouteRecordRaw> = [];
-    const modules: Record<string, { default: RouteRecordRaw }> = import.meta.glob('@/routes/*.ts', {
-      eager: true
-    });
-
-    Object.keys(modules).forEach((key) => {
-      routes.push(modules[key].default);
-    });
-
     const router = createRouter({
       history: createWebHistory(),
       routes
@@ -22,6 +22,7 @@ const vueRouterPlugin = {
 
     router.beforeEach(async (to, _from, next) => {
       const authStore = useAuthStore();
+
       const title = '' + to.meta.title || 'Code Base Vue 3';
       document.title = title;
 

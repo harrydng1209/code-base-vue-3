@@ -40,6 +40,8 @@
     "pattern": "^(feature|bugfix|hotfix|release)/.+|(master)$"
   },
   "dependencies": {
+    "@casl/ability": "^6.7.2",
+    "@casl/vue": "^2.2.2",
     "@vee-validate/yup": "^4.13.2",
     "@vueuse/core": "^10.9.0",
     "@vueuse/shared": "^10.9.0",
