@@ -23,7 +23,7 @@ const vueRouterPlugin = {
     router.beforeEach(async (to, _from, next) => {
       const authStore = useAuthStore();
 
-      const title = '' + to.meta.title || 'Code Base Vue 3';
+      const title = String(to.meta.title) || 'Code Base Vue 3';
       document.title = title;
 
       if (to.matched.some((item) => item.meta.requiresAuth)) {

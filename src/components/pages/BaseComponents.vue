@@ -40,6 +40,7 @@ const { handleSubmit, resetForm } = useForm({
 const { t } = useI18n();
 const { isDark } = useTheme();
 const { showConfirm } = useConfirmDialog();
+const { pagination } = usePagination();
 
 const baseSelect = ref({ label: 'select label 2', value: 'select value 2' });
 const baseCheckbox = ref<boolean>(false);
@@ -87,6 +88,8 @@ const handleDialog = () => {
 };
 
 const handleChangePagination = (currentPage: number, pageSize: number) => {
+  pagination.value.currentPage = currentPage;
+  pagination.value.pageSize = pageSize;
   utils.shared.showToast(`currentPage: ${currentPage} & pageSize: ${pageSize}`);
 };
 
@@ -112,6 +115,10 @@ const confirmDelete = () => {
     title: 'Warning'
   });
 };
+
+onMounted(() => {
+  pagination.value.total = 1000;
+});
 </script>
 
 <template>
@@ -308,18 +315,20 @@ const confirmDelete = () => {
         <ElTableColumn prop="zipCode" label="Zip Code" width="120" />
 
         <template #tfoot>
-          <BasePagination :total="1000" @change="handleChangePagination" />
+          <BasePagination :total="pagination.total" @change="handleChangePagination" />
         </template>
       </BaseTable>
+
+      <div class="tw-mt-4 tw-flex-center">usePagination: {{ pagination }}</div>
     </section>
 
     <section>
       <h4>-- Base Forms --</h4>
-      <ElForm @submit="onSubmit" labelWidth="auto">
+      <ElForm @submit="onSubmit" labelWidth="auto" labelPosition="left" style="width: 100%">
         <BaseFormItem name="email" label="Email">
           <template #default="{ modelValue, updateModelValue }">
             <BaseInput
-              placeholder="Email Address"
+              placeholder="Enter your email address"
               :modelValue="modelValue"
               @input="updateModelValue"
             />
@@ -328,14 +337,18 @@ const confirmDelete = () => {
 
         <BaseFormItem name="fullName" label="Full name">
           <template #default="{ modelValue, updateModelValue }">
-            <BaseInput placeholder="Full name" :modelValue="modelValue" @input="updateModelValue" />
+            <BaseInput
+              placeholder="Enter your full name"
+              :modelValue="modelValue"
+              @input="updateModelValue"
+            />
           </template>
         </BaseFormItem>
 
         <BaseFormItem name="password" label="Password">
           <template #default="{ modelValue, updateModelValue }">
             <BaseInput
-              placeholder="Password"
+              placeholder="Create a password"
               :modelValue="modelValue"
               @input="updateModelValue"
               showPassword
@@ -346,7 +359,7 @@ const confirmDelete = () => {
         <BaseFormItem name="passwordConfirm" label="Confirm Password">
           <template #default="{ modelValue, updateModelValue }">
             <BaseInput
-              placeholder="Confirm password"
+              placeholder="Re-enter your password"
               :modelValue="modelValue"
               @input="updateModelValue"
               showPassword
@@ -359,7 +372,7 @@ const confirmDelete = () => {
             <BaseSelect
               :modelValue="modelValue"
               @change="updateModelValue"
-              placeholder="Select Type"
+              placeholder="Choose a type"
               :options="baseSelectOptions"
             />
           </template>
