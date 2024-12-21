@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { ElTable } from 'element-plus';
+
 interface IProps {
   data: unknown[];
   loading?: boolean;
@@ -7,10 +9,15 @@ interface IProps {
 const props = withDefaults(defineProps<IProps>(), {
   loading: false
 });
+
+const innerRef = ref<InstanceType<typeof ElTable> | null>(null);
+
+defineExpose({ innerRef });
 </script>
 
 <template>
   <ElTable
+    ref="innerRef"
     :data="props.data"
     :defaultExpandAll="true"
     :border="true"

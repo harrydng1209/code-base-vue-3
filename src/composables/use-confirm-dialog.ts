@@ -1,6 +1,6 @@
 import { ElMessageBox } from 'element-plus';
 
-interface ConfirmDialogOptions {
+interface IOptions {
   cancelButtonText?: string;
   confirmButtonText?: string;
   message: string;
@@ -12,7 +12,7 @@ interface ConfirmDialogOptions {
 const useConfirmDialog = () => {
   const { t } = useI18n();
 
-  const showConfirm = async (options: ConfirmDialogOptions) => {
+  const showConfirm = async (options: IOptions) => {
     const {
       cancelButtonText = t('button.cancel'),
       confirmButtonText = t('button.ok'),
