@@ -28,7 +28,7 @@ const caslVuePlugin = {
     app.use(abilitiesPlugin, ability);
 
     authStore.$subscribe(() => {
-      const role = authStore.getUserInfo?.role || ERole.Guest;
+      const role = authStore.getUserRole || ERole.Guest;
       ability.update(defineAbilitiesFor(role).rules);
     });
   }

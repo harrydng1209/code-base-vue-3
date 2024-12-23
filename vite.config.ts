@@ -24,7 +24,7 @@ export default defineConfig({
     vue(),
     vueDevTools(),
     autoImport({
-      dirs: ['src/composables/**'],
+      dirs: ['src/composables/shared/**'],
       dts: 'src/@types/auto-imports.d.ts',
       imports: [
         'vue',

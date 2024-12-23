@@ -1,8 +1,10 @@
+import type { TDate } from '@/models/types/shared.type';
+
 import { ERegionalLocale } from '@/models/enums/shared.enum';
 import { useDateFormat, type UseDateFormatOptions } from '@vueuse/core';
 
 interface IProps {
-  date: Date | number | string;
+  date: TDate;
   format?: TFormat;
 }
 

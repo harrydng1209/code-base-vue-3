@@ -35,7 +35,7 @@ const vueRouterPlugin = {
         }
 
         const requiresRoles = to.meta.roles as ERole[];
-        const userRole = authStore.getUserInfo?.role;
+        const userRole = authStore.getUserRole;
         const hasRequiredRole = requiresRoles?.some((role) => role === userRole);
 
         if (requiresRoles.length && !hasRequiredRole) {
