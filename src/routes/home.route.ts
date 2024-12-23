@@ -1,4 +1,4 @@
-import Home from '@/components/pages/Home.vue';
+import Home from '@/components/modules/Home.vue';
 import Default from '@/layouts/Default.vue';
 import { ERole } from '@/models/enums/auth.enum';
 

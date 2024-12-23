@@ -6,7 +6,7 @@ import {
   baseSelectOptions,
   suggestions,
   tableData
-} from '@/mocks/base-page.mock';
+} from '@/mocks/base-components.mock';
 import { EToast } from '@/models/enums/shared.enum';
 import { toTypedSchema } from '@vee-validate/yup';
 import { useDebounceFn } from '@vueuse/core';
@@ -487,5 +487,5 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
-@import '@/assets/styles/pages/base-components.scss';
+@import '@/assets/styles/modules/base-components.scss';
 </style>

@@ -1,4 +1,4 @@
-import Login from '@/components/pages/auth/Login.vue';
+import Login from '@/components/modules/auth/Login.vue';
 import Guest from '@/layouts/Guest.vue';
 
 export default {

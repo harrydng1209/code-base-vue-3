@@ -1,4 +1,4 @@
-import BaseComponents from '@/components/pages/BaseComponents.vue';
+import BaseComponents from '@/components/modules/BaseComponents.vue';
 import Default from '@/layouts/Default.vue';
 import Error from '@/layouts/Error.vue';
 
