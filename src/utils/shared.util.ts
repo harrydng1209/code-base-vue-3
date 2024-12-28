@@ -29,6 +29,7 @@ const shared = {
     });
     return newObject as T;
   },
+
   convertToSnakeCase: <T>(data: Record<string, unknown> | Record<string, unknown>[]): T => {
     if (Array.isArray(data)) return data.map((item) => shared.convertToSnakeCase(item)) as T;
     if (!data || typeof data !== EDataType.Object) return data as T;
@@ -46,6 +47,7 @@ const shared = {
     });
     return newObject as T;
   },
+
   hideLoading: (loadingInstance: null | ReturnType<typeof ElLoading.service>) => {
     if (loadingInstance) {
       loadingInstance.close();
@@ -54,11 +56,13 @@ const shared = {
         element.classList.remove('tw-pointer-events-none');
     }
   },
+
   isSuccessResponse<T, M>(
     response: IFailureResponse | TSuccessResponse<T, M>
   ): response is TSuccessResponse<T, M> {
     return response.status === EResponseStatus.Success;
   },
+
   queryClean: <T>(query: Record<string, unknown>): T => {
     const cleanedQuery = Object.fromEntries(
       Object.entries(query).filter(([_, value]) => value !== undefined && value !== '')
@@ -66,6 +70,7 @@ const shared = {
 
     return cleanedQuery as T;
   },
+
   queryStringFormat: (
     baseUrl: string,
     query: Record<string, unknown> | string | string[]
@@ -81,6 +86,7 @@ const shared = {
       typeof query === EDataType.String ? query : qs.stringify(query, { arrayFormat: 'brackets' });
     return `${baseUrl}?${queryString}`;
   },
+
   showLoading: (target: TLoadingTarget) => {
     if (target === false) return null;
 
@@ -98,6 +104,7 @@ const shared = {
 
     return null;
   },
+
   showToast: (message: string, type: EToast = EToast.Success, title: string = capitalize(type)) => {
     ElNotification({
       duration: 3000,
@@ -106,6 +113,7 @@ const shared = {
       type
     });
   },
+
   sleep: (second: number) => {
     return new Promise<void>((resolve) => {
       setTimeout(() => {
@@ -113,12 +121,15 @@ const shared = {
       }, 1000 * second);
     });
   },
+
   storeDisposeAll: () => {
     storeService.disposeAll();
   },
+
   storeResetAll: () => {
     storeService.resetAll();
   },
+
   stringFormat: (template: string, values: Record<string, unknown> | unknown[]): string => {
     return stringFormat(template, values);
   }

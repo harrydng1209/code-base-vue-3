@@ -1,5 +1,3 @@
-import type { App } from 'vue';
-
 import vueTippy from 'vue-tippy';
 
 const tippyOptions = {

@@ -1,5 +1,4 @@
 import type { ERole } from '@/models/enums/auth.enum';
-import type { App } from 'vue';
 
 import useAuthStore from '@/stores/auth.store';
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';

@@ -1,5 +1,4 @@
 import type { IPermission } from '@/models/interfaces/auth.interface';
-import type { App } from 'vue';
 
 import { ERole } from '@/models/enums/auth.enum';
 import useAuthStore from '@/stores/auth.store';

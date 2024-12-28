@@ -31,6 +31,11 @@ export default defineConfig({
         'vue-router',
         'vue-i18n',
         {
+          from: 'vue',
+          imports: ['App', 'Slots', 'DefineComponent'],
+          type: true
+        },
+        {
           '@/apis': [['default', 'apis']],
           '@/constants': [['default', 'constants']],
           '@/utils': [['default', 'utils']]
