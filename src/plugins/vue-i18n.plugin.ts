@@ -3,7 +3,9 @@ import { createI18n } from 'vue-i18n';
 
 const locales: Record<string, { default: Record<string, string> }> = import.meta.glob(
   '@/locales/**/*.json',
-  { eager: true }
+  {
+    eager: true
+  }
 );
 const messages: Record<ELanguageCode, Record<string, string>> = Object.values(ELanguageCode).reduce(
   (acc, lang) => {
