@@ -5,7 +5,9 @@ import useAuthStore from '@/stores/auth.store';
 import { AbilityBuilder, createMongoAbility, PureAbility } from '@casl/ability';
 import { abilitiesPlugin } from '@casl/vue';
 
-const rolePermissions: Record<ERole, IPermission[]> = {
+type TRolePermissions = Record<ERole, IPermission[]>;
+
+const rolePermissions: TRolePermissions = {
   [ERole.Admin]: [{ action: 'manage', subject: 'Article' }],
   [ERole.Guest]: [{ action: 'read', subject: 'Article' }],
   [ERole.Moderator]: [{ action: 'moderate', subject: 'Comment' }],

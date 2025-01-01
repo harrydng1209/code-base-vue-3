@@ -3,8 +3,10 @@ import type { ERole } from '@/models/enums/auth.enum';
 import useAuthStore from '@/stores/auth.store';
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 
+type TModules = Record<string, { default: RouteRecordRaw }>;
+
 const routes: Array<RouteRecordRaw> = [];
-const modules: Record<string, { default: RouteRecordRaw }> = import.meta.glob('@/routes/*.ts', {
+const modules: TModules = import.meta.glob('@/routes/*.ts', {
   eager: true
 });
 
