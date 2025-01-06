@@ -1,7 +1,7 @@
-import Error from '@/layouts/Error.vue';
+import ErrorLayout from '@/layouts/ErrorLayout.vue';
 
 export default {
-  component: Error,
+  component: ErrorLayout,
   meta: {
     requiresAuth: false,
     roles: [],

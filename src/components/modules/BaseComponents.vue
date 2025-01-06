@@ -163,7 +163,7 @@ onMounted(() => {
     <section>
       <h4>-- i18n --</h4>
       <div class="tw-flex tw-items-center tw-gap-4">
-        <p>{{ t('hello') }}</p>
+        <p>{{ t('shared.hello') }}</p>
       </div>
     </section>
 

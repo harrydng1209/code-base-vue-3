@@ -22,7 +22,7 @@
     "test:e2e": "start-server-and-test preview http://localhost:4173 'cypress run --e2e'",
     "test:e2e:dev": "start-server-and-test 'vite dev --port 4173' http://localhost:4173 'cypress open --e2e'",
     "build-only": "vite build",
-    "format": "prettier --write \"**/*.{css,html,js,json,md,scss,ts,tsx,vue}\"",
+    "format": "prettier --write \"**/*.{css,html,js,jsx,json,md,scss,ts,tsx,vue}\"",
     "lint": "eslint . --ext .cjs,.js,.jsx,.mjs,.ts,.tsx,.cts,.mts,.vue --fix",
     "type-check": "vue-tsc --build --force",
     "check-all": "run-p format lint type-check",
@@ -31,7 +31,7 @@
     "precommit": "lint-staged && validate-branch-name"
   },
   "lint-staged": {
-    "*.{ts,vue}": [
+    "*.{js,ts,vue}": [
       "pnpm run format",
       "pnpm run lint",
       "git add ."

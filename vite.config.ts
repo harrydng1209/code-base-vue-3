@@ -32,7 +32,7 @@ export default defineConfig({
         'vue-i18n',
         {
           from: 'vue',
-          imports: ['App', 'Slots', 'DefineComponent'],
+          imports: ['App', 'Slots'],
           type: true
         },
         {

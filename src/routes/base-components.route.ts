@@ -1,6 +1,6 @@
 import BaseComponents from '@/components/modules/BaseComponents.vue';
-import Default from '@/layouts/Default.vue';
-import Error from '@/layouts/Error.vue';
+import DefaultLayout from '@/layouts/DefaultLayout.vue';
+import ErrorLayout from '@/layouts/ErrorLayout.vue';
 
 const isDevelopment = import.meta.env.VITE_NODE_ENV === constants.shared.NODE_ENV.DEVELOPMENT;
 
@@ -8,10 +8,10 @@ export default {
   children: [
     {
       component: BaseComponents,
-      path: constants.routePages.BASE_COMPONENTS
+      path: ''
     }
   ],
-  component: isDevelopment ? Default : Error,
+  component: isDevelopment ? DefaultLayout : ErrorLayout,
   meta: {
     requiresAuth: false,
     roles: [],

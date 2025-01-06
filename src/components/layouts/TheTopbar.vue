@@ -3,8 +3,8 @@ import { notifications } from '@/mocks/the-topbar.mock';
 import { ELanguageCode } from '@/models/enums/shared.enum';
 
 const { t } = useI18n();
-const { isDark, toggleDark } = useTheme();
-const { currentLanguage, toggleLanguage } = useLanguage();
+const { changeTheme, isDark } = useTheme();
+const { changeLanguage, currentLanguage } = useLanguage();
 
 const searchInput = ref<string>('');
 const i18nOptions = Object.entries(ELanguageCode).map(([key, value]) => ({
@@ -46,7 +46,7 @@ const getIconPathForLanguage = (lang: ELanguageCode) => {
           isDark ? constants.iconPaths.SHARED.LIGHT_MODE : constants.iconPaths.SHARED.DARK_MODE
         "
         :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
-        @click="toggleDark()"
+        @click="changeTheme()"
       />
 
       <BaseDropdown>
@@ -59,11 +59,11 @@ const getIconPathForLanguage = (lang: ELanguageCode) => {
             <ElDropdownItem
               v-for="(item, index) in i18nOptions"
               :key="index"
-              @click="toggleLanguage(item.value)"
+              @click="changeLanguage(item.value)"
             >
               <div class="tw-flex-center tw-gap-2">
                 <BaseIconSvg :path="getIconPathForLanguage(item.value)" />
-                <span>{{ item.label }}</span>
+                <p>{{ item.label }}</p>
               </div>
             </ElDropdownItem>
           </ElDropdownMenu>
@@ -90,7 +90,7 @@ const getIconPathForLanguage = (lang: ELanguageCode) => {
             </ElDropdownItem>
 
             <ElDropdownItem divided>
-              <span>Clear All</span>
+              <p>Clear All</p>
             </ElDropdownItem>
           </ElDropdownMenu>
         </template>

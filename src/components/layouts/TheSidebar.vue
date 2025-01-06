@@ -19,7 +19,7 @@ const { isDark } = useTheme();
             :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
           />
         </ElIcon>
-        <template #title>{{ t('navigator.login') }}</template>
+        <template #title>{{ t('shared.navigator.login') }}</template>
       </ElMenuItem>
 
       <ElMenuItem :index="constants.routePages.BASE_COMPONENTS">
@@ -29,7 +29,7 @@ const { isDark } = useTheme();
             :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
           />
         </ElIcon>
-        <template #title>{{ t('navigator.baseComponents') }}</template>
+        <template #title>{{ t('shared.navigator.baseComponents') }}</template>
       </ElMenuItem>
     </ElMenu>
   </div>

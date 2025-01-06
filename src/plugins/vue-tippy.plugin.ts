@@ -1,6 +1,6 @@
 import vueTippy from 'vue-tippy';
 
-const tippyOptions = {
+const options = {
   component: 'tippy',
   componentSingleton: 'tippy-singleton',
   defaultProps: {
@@ -14,7 +14,7 @@ const tippyOptions = {
 
 const vueTippyPlugin = {
   install(app: App) {
-    app.use(vueTippy, tippyOptions);
+    app.use(vueTippy, options);
   }
 };
 

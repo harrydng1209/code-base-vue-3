@@ -30,7 +30,12 @@ module.exports = {
       }
     ],
     'eol-last': ['error', 'always'],
-    'no-console': 'warn',
+    'no-console': [
+      'warn',
+      {
+        allow: ['error', 'info']
+      }
+    ],
     'vue/attribute-hyphenation': ['error', 'never'],
     'vue/component-name-in-template-casing': [
       'error',
