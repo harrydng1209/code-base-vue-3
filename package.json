@@ -47,6 +47,7 @@
     "@vueuse/core": "^10.9.0",
     "@vueuse/shared": "^10.9.0",
     "axios": "^1.7.7",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.4.7",
     "element-plus": "^2.8.5",
     "lodash-es": "^4.17.21",
