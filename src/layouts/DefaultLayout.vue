@@ -18,11 +18,11 @@ const headerStyle = computed(() => ({
     </ElAside>
 
     <ElContainer class="default-layout__main">
-      <ElHeader class="default-layout__main-header" :style="headerStyle">
+      <ElHeader class="default-layout__main--header" :style="headerStyle">
         <TheTopbar />
       </ElHeader>
 
-      <ElMain class="default-layout__main-view">
+      <ElMain class="default-layout__main--view">
         <RouterView />
       </ElMain>
     </ElContainer>
