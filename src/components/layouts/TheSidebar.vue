@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n();
 const { isDark } = useTheme();
+const route = useRoute();
 </script>
 
 <template>
@@ -11,7 +12,7 @@ const { isDark } = useTheme();
       </RouterLink>
     </div>
 
-    <ElMenu defaultActive="1" :collapse="false" :router="true">
+    <ElMenu :defaultActive="route.path" :collapse="false" :router="true">
       <ElMenuItem :index="constants.routePages.AUTH.LOGIN">
         <ElIcon>
           <BaseIconSvg
@@ -29,7 +30,7 @@ const { isDark } = useTheme();
             :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
           />
         </ElIcon>
-        <template #title>{{ t('shared.navigator.baseComponents') }}</template>
+        <template #title>{{ t('shared.navigator.base-components') }}</template>
       </ElMenuItem>
     </ElMenu>
   </div>
