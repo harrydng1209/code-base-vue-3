@@ -1,4 +1,8 @@
 <script setup lang="ts">
+const { LAYOUTS, SHARED } = constants.iconPaths;
+const { BLACK, WHITE } = constants.shared.COLORS;
+const { AUTH, BASE_COMPONENTS, HOME } = constants.routePages;
+
 const { t } = useI18n();
 const { isDark } = useTheme();
 const route = useRoute();
@@ -7,28 +11,22 @@ const route = useRoute();
 <template>
   <div class="the-sidebar">
     <div class="the-sidebar__logo">
-      <RouterLink :to="constants.routePages.HOME">
-        <BaseIconSvg :path="constants.iconPaths.SHARED.LOGO" />
+      <RouterLink :to="HOME">
+        <BaseIconSvg :path="SHARED.LOGO" />
       </RouterLink>
     </div>
 
     <ElMenu :defaultActive="route.path" :collapse="false" :router="true">
-      <ElMenuItem :index="constants.routePages.AUTH.LOGIN">
+      <ElMenuItem :index="AUTH.LOGIN">
         <ElIcon>
-          <BaseIconSvg
-            :path="constants.iconPaths.LAYOUTS.DASHBOARD"
-            :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
-          />
+          <BaseIconSvg :path="LAYOUTS.DASHBOARD" :fill="isDark ? WHITE : BLACK" />
         </ElIcon>
         <template #title>{{ t('shared.navigator.login') }}</template>
       </ElMenuItem>
 
-      <ElMenuItem :index="constants.routePages.BASE_COMPONENTS">
+      <ElMenuItem :index="BASE_COMPONENTS">
         <ElIcon>
-          <BaseIconSvg
-            :path="constants.iconPaths.LAYOUTS.FOLDER_SHARED"
-            :fill="isDark ? constants.shared.COLORS.WHITE : constants.shared.COLORS.BLACK"
-          />
+          <BaseIconSvg :path="LAYOUTS.FOLDER_SHARED" :fill="isDark ? WHITE : BLACK" />
         </ElIcon>
         <template #title>{{ t('shared.navigator.base-components') }}</template>
       </ElMenuItem>

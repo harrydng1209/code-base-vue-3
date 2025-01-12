@@ -8,10 +8,6 @@ import { object as yupObject, string as yupString } from 'yup';
 
 const { MODULES, SHARED } = constants.iconPaths;
 
-const { t } = useI18n();
-const authStore = useAuthStore();
-const router = useRouter();
-
 const schema = toTypedSchema(
   yupObject({
     email: yupString()
@@ -27,6 +23,9 @@ const { handleSubmit } = useForm<ILogin>({
   initialValues: {},
   validationSchema: schema
 });
+const { t } = useI18n();
+const authStore = useAuthStore();
+const router = useRouter();
 
 const showPassword = ref<boolean>(false);
 

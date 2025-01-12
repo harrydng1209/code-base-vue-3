@@ -45,7 +45,6 @@ const { handleSubmit, resetForm } = useForm({
   initialValues: {},
   validationSchema: schema
 });
-
 const { t } = useI18n();
 const { isDark } = useTheme();
 const { showConfirm } = useConfirmDialog();
