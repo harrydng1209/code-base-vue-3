@@ -20,9 +20,11 @@ export default defineConfig({
       }
     }
   },
+
   plugins: [
     vue(),
     vueDevTools(),
+
     autoImport({
       dirs: ['src/composables/shared/**'],
       dts: 'src/@types/auto-imports.d.ts',
@@ -44,6 +46,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
       vueTemplate: true
     }),
+
     components({
       dirs: ['src/components/base/**'],
       dts: 'src/@types/components.d.ts',
@@ -56,15 +59,18 @@ export default defineConfig({
       ]
     })
   ],
+
   preview: {
     host: '0.0.0.0',
     port: Number(process.env.VITE_PORT_PREVIEW) || 3030
   },
+
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
+
   server: {
     host: '0.0.0.0',
     port: Number(process.env.VITE_PORT) || 3000

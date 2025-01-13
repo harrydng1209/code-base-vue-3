@@ -2,7 +2,9 @@ import BaseComponents from '@/components/modules/BaseComponents.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import ErrorLayout from '@/layouts/ErrorLayout.vue';
 
-const isDevelopment = import.meta.env.VITE_NODE_ENV === constants.shared.NODE_ENV.DEVELOPMENT;
+const { NODE_ENV } = constants.shared;
+
+const isDevelopment = import.meta.env.VITE_NODE_ENV === NODE_ENV.DEVELOPMENT;
 
 export default {
   children: [
