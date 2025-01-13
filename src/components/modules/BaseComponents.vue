@@ -166,7 +166,7 @@ const handleLoadingFullscreen = async () => {
 
 const handleLoadingSection = async () => {
   let loadingInstance: null | ReturnType<typeof ElLoading.service> = null;
-  loadingInstance = utils.shared.showLoading(constants.shared.SELECTOR_IDS.LOADING_SECTION_ID);
+  loadingInstance = utils.shared.showLoading(constants.shared.SELECTORS.LOADING_SECTION);
   await utils.shared.sleep(3);
   utils.shared.hideLoading(loadingInstance);
 };
@@ -185,12 +185,12 @@ onMounted(() => {
       </div>
     </section>
 
-    <section :id="constants.shared.SELECTOR_IDS.APIS_SECTION_ID">
+    <section :id="constants.shared.SELECTORS.APIS_SECTION">
       <h4>-- Apis --</h4>
       <BaseButton @click="handleGetHealthCheck">Health Check</BaseButton>
     </section>
 
-    <section :id="constants.shared.SELECTOR_IDS.LOADING_SECTION_ID">
+    <section :id="constants.shared.SELECTORS.LOADING_SECTION">
       <h4>-- The Loading --</h4>
       <BaseButton @click="handleLoadingFullscreen">Fullscreen</BaseButton>
       <BaseButton @click="handleLoadingSection">Section</BaseButton>
