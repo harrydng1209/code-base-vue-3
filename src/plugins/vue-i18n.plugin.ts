@@ -7,7 +7,7 @@ type TLocales = Record<string, { default: TObjectString }>;
 type TMessages = Record<ELanguageCode, TObjectString>;
 
 const locales: TLocales = import.meta.glob('@/locales/**/*.json', {
-  eager: true
+  eager: true,
 });
 const messages: TMessages = Object.values(ELanguageCode).reduce((acc, lang) => {
   acc[lang] = {};
@@ -34,11 +34,11 @@ const vueI18nPlugin = {
     const i18n = createI18n({
       legacy: false,
       locale: ELanguageCode.English,
-      messages
+      messages,
     });
 
     app.use(i18n);
-  }
+  },
 };
 
 export default vueI18nPlugin;

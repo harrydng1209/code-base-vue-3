@@ -27,6 +27,8 @@ coverage
 *.tsbuildinfo
 
 # Other files
+.globalsrc.json
+
 .env
 .env.*
 !.env.sample

@@ -6,14 +6,14 @@ export default {
   children: [
     {
       component: Home,
-      path: ''
-    }
+      path: '',
+    },
   ],
   component: DefaultLayout,
   meta: {
     requiresAuth: false,
     roles: [ERole.Admin, ERole.Guest, ERole.Moderator, ERole.SuperAdmin, ERole.User],
-    title: 'Home'
+    title: 'Home',
   },
-  path: constants.routePages.HOME
+  path: constants.routePages.HOME,
 };

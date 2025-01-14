@@ -7,7 +7,7 @@ type TModules = Record<string, { default: RouteRecordRaw }>;
 
 const routes: Array<RouteRecordRaw> = [];
 const modules: TModules = import.meta.glob('@/routes/*.ts', {
-  eager: true
+  eager: true,
 });
 
 Object.keys(modules).forEach((key) => {
@@ -18,7 +18,7 @@ const vueRouterPlugin = {
   install(app: App) {
     const router = createRouter({
       history: createWebHistory(),
-      routes
+      routes,
     });
 
     router.beforeEach(async (to, _from, next) => {
@@ -49,7 +49,7 @@ const vueRouterPlugin = {
     });
 
     app.use(router);
-  }
+  },
 };
 
 export default vueRouterPlugin;

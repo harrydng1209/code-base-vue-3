@@ -9,14 +9,14 @@ export default {
   children: [
     {
       component: BaseComponents,
-      path: ''
-    }
+      path: '',
+    },
   ],
   component: isDevelopment ? DefaultLayout : ErrorLayout,
   meta: {
     requiresAuth: false,
     roles: [],
-    title: 'Base Components'
+    title: 'Base Components',
   },
-  path: constants.routePages.BASE_COMPONENTS
+  path: constants.routePages.BASE_COMPONENTS,
 };

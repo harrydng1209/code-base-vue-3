@@ -5,14 +5,14 @@ export default {
   children: [
     {
       component: Login,
-      path: constants.routePages.AUTH.LOGIN
-    }
+      path: constants.routePages.AUTH.LOGIN,
+    },
   ],
   component: GuestLayout,
   meta: {
     requiresAuth: false,
     roles: [],
-    title: 'Authentication'
+    title: 'Authentication',
   },
-  path: constants.routePages.AUTH.ROOT
+  path: constants.routePages.AUTH.ROOT,
 };

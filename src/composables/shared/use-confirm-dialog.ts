@@ -19,7 +19,7 @@ const useConfirmDialog = () => {
       message,
       onCancel,
       onConfirm,
-      title
+      title,
     } = options || {};
 
     ElMessageBox.confirm(message, title, {
@@ -28,7 +28,7 @@ const useConfirmDialog = () => {
       closeOnClickModal: false,
       closeOnPressEscape: false,
       confirmButtonText,
-      showClose: false
+      showClose: false,
     })
       .then(() => onConfirm())
       .catch(() => onCancel());

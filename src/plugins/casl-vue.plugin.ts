@@ -12,7 +12,7 @@ const rolePermissions: TRolePermissions = {
   [ERole.Guest]: [{ action: 'read', subject: 'Article' }],
   [ERole.Moderator]: [{ action: 'moderate', subject: 'Comment' }],
   [ERole.SuperAdmin]: [{ action: 'manage', subject: 'all' }],
-  [ERole.User]: [{ action: 'create', subject: 'Article' }]
+  [ERole.User]: [{ action: 'create', subject: 'Article' }],
 };
 
 const defineAbilitiesFor = (role: ERole): PureAbility => {
@@ -32,7 +32,7 @@ const caslVuePlugin = {
       const role = authStore.getUserRole || ERole.Guest;
       ability.update(defineAbilitiesFor(role).rules);
     });
-  }
+  },
 };
 
 export default caslVuePlugin;
