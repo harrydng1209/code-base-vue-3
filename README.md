@@ -2,60 +2,47 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+## Overview
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Name**: code-base-vue-3
+- **Description**: This template should help get you started developing with Vue 3 in Vite
+- **Version**: 0.1.0
+- **License**: MIT
+- **Type**: Module
 
-## Type Support for `.vue` Imports in TS
+## Author
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- **Name**: HXRRY
+- **Email**: [harrydng1209@gmail.com](mailto:harrydng1209@gmail.com)
+- **GitHub**: [harrydng1209](https://github.com/harrydng1209)
 
-## Customize configuration
+## Requirements
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- **Node.js**: >= 20.x
+- **npm**: >= 10.x
 
-## Project Setup
+## Scripts
 
-```sh
+This project includes several scripts to assist with development:
+
+- `dev`: Start the development server using Vite.
+- `build`: Run type checks and build the project.
+- `preview`: Preview the built project.
+- `build-only`: Build the project without additional checks.
+- `format`: Format code using Prettier.
+- `lint`: Lint code using ESLint and fix issues.
+- `type-check`: Perform type checking with Vue TypeScript Compiler.
+- `check-all`: Run format, lint, and type-check scripts in parallel.
+- `preinstall`: Ensure only pnpm is used as the package manager.
+- `prepare`: Prepare Husky for Git hooks.
+- `precommit`: Run lint-staged and validate branch names before committing.
+
+## Getting Started
+
+To get started with this template, clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/harrydng1209/code-base-vue-3.git
+cd code-base-vue-3
 pnpm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-pnpm build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-pnpm test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-pnpm test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-pnpm build
-pnpm test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
 ```
