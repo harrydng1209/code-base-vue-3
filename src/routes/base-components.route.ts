@@ -2,8 +2,9 @@ import BaseComponents from '@/components/modules/BaseComponents.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import ErrorLayout from '@/layouts/ErrorLayout.vue';
 
-const { NODE_ENVS } = constants.shared;
-const isDevelopment = import.meta.env.VITE_NODE_ENV === NODE_ENVS.DEVELOP;
+const { DEVELOP } = constants.shared.NODE_ENVS;
+const { BASE_COMPONENTS } = constants.routePages;
+const isDevelopment = import.meta.env.VITE_NODE_ENV === DEVELOP;
 
 export default {
   children: [
@@ -18,5 +19,5 @@ export default {
     roles: [],
     title: 'Base Components',
   },
-  path: constants.routePages.BASE_COMPONENTS,
+  path: BASE_COMPONENTS,
 };

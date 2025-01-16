@@ -1,13 +1,11 @@
 import vue from '@vitejs/plugin-vue';
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import { fileURLToPath, URL } from 'node:url';
 import autoImport from 'unplugin-auto-import/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import components from 'unplugin-vue-components/vite';
 import { defineConfig } from 'vite';
 import vueDevTools from 'vite-plugin-vue-devtools';
-
-dotenv.config();
 
 export default defineConfig({
   css: {

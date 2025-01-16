@@ -1,11 +1,13 @@
 import Login from '@/components/modules/auth/Login.vue';
 import GuestLayout from '@/layouts/GuestLayout.vue';
 
+const { AUTH } = constants.routePages;
+
 export default {
   children: [
     {
       component: Login,
-      path: constants.routePages.AUTH.LOGIN,
+      path: AUTH.LOGIN,
     },
   ],
   component: GuestLayout,
@@ -14,5 +16,5 @@ export default {
     roles: [],
     title: 'Authentication',
   },
-  path: constants.routePages.AUTH.ROOT,
+  path: AUTH.ROOT,
 };

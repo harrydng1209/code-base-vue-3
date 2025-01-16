@@ -6,7 +6,10 @@ import { toTypedSchema } from '@vee-validate/yup';
 import { useForm } from 'vee-validate';
 import { object as yupObject, string as yupString } from 'yup';
 
+const { HOME } = constants.routePages;
 const { MODULES, SHARED } = constants.iconPaths;
+const { LOGIN_BUTTON } = constants.shared.SELECTORS;
+const { isSuccessResponse } = utils.shared;
 
 const schema = yupObject({
   email: yupString()
@@ -37,10 +40,10 @@ const togglePasswordVisibility = () => {
 const onSubmit = handleSubmit(async (values) => {
   try {
     const response = await apis.auth.login(values);
-    if (!utils.shared.isSuccessResponse(response)) throw new Error(response.error.message);
+    if (!isSuccessResponse(response)) throw new Error(response.error.message);
 
     authStore.setToken(response.data.accessToken);
-    await router.push(constants.routePages.HOME);
+    await router.push(HOME);
   } catch (error) {
     console.error(error);
   }
@@ -93,12 +96,7 @@ const onSubmit = handleSubmit(async (values) => {
           </template>
         </BaseFormItem>
 
-        <BaseButton
-          :id="constants.shared.SELECTORS.LOGIN_BUTTON"
-          type="primary"
-          nativeType="submit"
-          class="tw-w-full"
-        >
+        <BaseButton :id="LOGIN_BUTTON" type="primary" nativeType="submit" class="tw-w-full">
           {{ t('auth.login') }}
         </BaseButton>
       </ElForm>

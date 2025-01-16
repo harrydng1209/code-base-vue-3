@@ -3,6 +3,8 @@ import type { ERole } from '@/models/enums/auth.enum';
 import useAuthStore from '@/stores/auth.store';
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 
+const { AUTH, FORBIDDEN } = constants.routePages;
+
 type TModules = Record<string, { default: RouteRecordRaw }>;
 
 const routes: Array<RouteRecordRaw> = [];
@@ -31,7 +33,7 @@ const vueRouterPlugin = {
         await authStore.initialize();
 
         if (!authStore.getAuthenticated) {
-          next({ path: constants.routePages.AUTH.LOGIN });
+          next({ path: AUTH.LOGIN });
           return;
         }
 
@@ -40,7 +42,7 @@ const vueRouterPlugin = {
         const hasRequiredRole = requiresRoles?.some((role) => role === userRole);
 
         if (requiresRoles.length && !hasRequiredRole) {
-          next({ path: constants.routePages.FORBIDDEN });
+          next({ path: FORBIDDEN });
           return;
         }
       }

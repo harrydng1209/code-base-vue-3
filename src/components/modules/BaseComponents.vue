@@ -22,6 +22,8 @@ import {
 
 const { LAYOUTS, SHARED } = constants.iconPaths;
 const { BLACK, WHITE } = constants.shared.COLORS;
+const { APIS_SECTION, LOADING_SECTION } = constants.shared.SELECTORS;
+const { hideLoading, showLoading, showToast, sleep } = utils.shared;
 
 const schema = yupObject({
   email: yupString()
@@ -72,50 +74,50 @@ const isIndeterminate = ref<boolean>(false);
 const searchInput = ref<string>('');
 
 const handleClickButton = useDebounceFn(() => {
-  utils.shared.showToast('handleClickButton');
+  showToast('handleClickButton');
 }, 200);
 
 const handleChangeSelect = (value: unknown) => {
-  utils.shared.showToast(`handleChangeSelect: ${value}`);
+  showToast(`handleChangeSelect: ${value}`);
 };
 
 const handleClickIconSvg = useDebounceFn(() => {
-  utils.shared.showToast('handleClickIconSvg');
+  showToast('handleClickIconSvg');
 }, 200);
 
 const handleChangeCheckbox = (value: boolean) => {
-  utils.shared.showToast(`handleChangeCheckbox: ${value}`);
+  showToast(`handleChangeCheckbox: ${value}`);
 };
 
 const handleChangeInput = useDebounceFn((value: number | string) => {
-  utils.shared.showToast(`handleChangeInput: ${value}`);
+  showToast(`handleChangeInput: ${value}`);
 }, 200);
 
 const handleChangeDatePicker = (value: unknown) => {
-  utils.shared.showToast(`handleChangeDatePicker: ${value}`);
+  showToast(`handleChangeDatePicker: ${value}`);
 };
 
 const handleChangeTimePicker = (value: unknown) => {
-  utils.shared.showToast(`handleChangeTimePicker: ${value}`);
+  showToast(`handleChangeTimePicker: ${value}`);
 };
 
 const handleChangeSwitch = (value: boolean) => {
-  utils.shared.showToast(`handleChangeSwitch: ${value}`);
+  showToast(`handleChangeSwitch: ${value}`);
 };
 
 const handleDialog = () => {
   baseDialog.value = false;
-  utils.shared.showToast('handleConfirmDialog', EToast.Info);
+  showToast('handleConfirmDialog', EToast.Info);
 };
 
 const handleChangePagination = (currentPage: number, pageSize: number) => {
   pagination.value.currentPage = currentPage;
   pagination.value.pageSize = pageSize;
-  utils.shared.showToast(`currentPage: ${currentPage} & pageSize: ${pageSize}`);
+  showToast(`currentPage: ${currentPage} & pageSize: ${pageSize}`);
 };
 
 const onSubmit = handleSubmit((_values: IForm) => {
-  utils.shared.showToast('onSubmit: check console');
+  showToast('onSubmit: check console');
 });
 
 const handleGetHealthCheck = useDebounceFn(async () => {
@@ -154,10 +156,10 @@ const confirmDelete = () => {
     confirmButtonText: 'Yes, Delete',
     message: 'Proxy will permanently delete the file. Continue?',
     onCancel: () => {
-      utils.shared.showToast('File deletion has been canceled');
+      showToast('File deletion has been canceled');
     },
     onConfirm: () => {
-      utils.shared.showToast('File has been successfully deleted');
+      showToast('File has been successfully deleted');
     },
     title: 'Warning',
   });
@@ -165,16 +167,16 @@ const confirmDelete = () => {
 
 const handleLoadingFullscreen = async () => {
   let loadingInstance: null | ReturnType<typeof ElLoading.service> = null;
-  loadingInstance = utils.shared.showLoading('fullscreen');
-  await utils.shared.sleep(3);
-  utils.shared.hideLoading(loadingInstance);
+  loadingInstance = showLoading('fullscreen');
+  await sleep(3);
+  hideLoading(loadingInstance);
 };
 
 const handleLoadingSection = async () => {
   let loadingInstance: null | ReturnType<typeof ElLoading.service> = null;
-  loadingInstance = utils.shared.showLoading(constants.shared.SELECTORS.LOADING_SECTION);
-  await utils.shared.sleep(3);
-  utils.shared.hideLoading(loadingInstance);
+  loadingInstance = showLoading(LOADING_SECTION);
+  await sleep(3);
+  hideLoading(loadingInstance);
 };
 
 onMounted(() => {
@@ -191,12 +193,12 @@ onMounted(() => {
       </div>
     </section>
 
-    <section :id="constants.shared.SELECTORS.APIS_SECTION">
+    <section :id="APIS_SECTION">
       <h4>-- Apis --</h4>
       <BaseButton @click="handleGetHealthCheck">Health Check</BaseButton>
     </section>
 
-    <section :id="constants.shared.SELECTORS.LOADING_SECTION">
+    <section :id="LOADING_SECTION">
       <h4>-- The Loading --</h4>
       <BaseButton @click="handleLoadingFullscreen">Fullscreen</BaseButton>
       <BaseButton @click="handleLoadingSection">Section</BaseButton>
@@ -367,10 +369,7 @@ onMounted(() => {
           class="!tw-w-[300px]"
         >
           <template #suffix>
-            <BaseIconSvg
-              :path="constants.iconPaths.LAYOUTS.SEARCH"
-              :fill="isDark ? WHITE : BLACK"
-            />
+            <BaseIconSvg :path="LAYOUTS.SEARCH" :fill="isDark ? WHITE : BLACK" />
           </template>
         </BaseInput>
       </div>

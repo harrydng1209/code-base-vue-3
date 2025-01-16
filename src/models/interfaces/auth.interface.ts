@@ -26,11 +26,10 @@ export interface IPermission {
 
 export interface IUserInfo {
   createdAt: string;
-  deletedAt: null | string;
+  displayName: string;
   email: string;
-  firstName: string;
   id: number;
-  lastName: string;
   role: ERole;
   updatedAt: string;
+  username: string;
 }
