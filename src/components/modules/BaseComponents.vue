@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { IForm } from '@/models/interfaces/auth.interface';
 import type { TDate, TOptions } from '@/models/types/shared.type';
 import type { ElLoading } from 'element-plus';
 
@@ -24,6 +23,15 @@ const { LAYOUTS, SHARED } = constants.iconPaths;
 const { BLACK, WHITE } = constants.shared.COLORS;
 const { APIS_SECTION, LOADING_SECTION } = constants.shared.SELECTORS;
 const { hideLoading, showLoading, showToast, sleep } = utils.shared;
+
+interface IForm {
+  email: string;
+  fullName: string;
+  password: string;
+  passwordConfirm: string;
+  terms: boolean;
+  type: string;
+}
 
 const schema = yupObject({
   email: yupString()
@@ -55,7 +63,7 @@ const { handleSubmit, resetForm } = useForm<IForm>({
 });
 const { t } = useI18n();
 const { isDark } = useTheme();
-const { showConfirm } = useConfirmDialog();
+const { showConfirmDialog } = useConfirmDialog();
 const { pagination } = usePagination();
 
 const baseSelect = ref<TOptions>();
@@ -116,7 +124,8 @@ const handleChangePagination = (currentPage: number, pageSize: number) => {
   showToast(`currentPage: ${currentPage} & pageSize: ${pageSize}`);
 };
 
-const onSubmit = handleSubmit((_values: IForm) => {
+const onSubmit = handleSubmit((values) => {
+  console.info('onSubmit:', values);
   showToast('onSubmit: check console');
 });
 
@@ -151,7 +160,7 @@ const handleCheckboxGroupChange = (value: string[]) => {
 };
 
 const confirmDelete = () => {
-  showConfirm({
+  showConfirmDialog({
     cancelButtonText: 'No, Cancel',
     confirmButtonText: 'Yes, Delete',
     message: 'Proxy will permanently delete the file. Continue?',

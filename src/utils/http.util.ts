@@ -1,8 +1,10 @@
-import type { IFailureResponse } from '@/models/interfaces/shared.interface';
-import type { TLoadingTarget, TSuccessResponse } from '@/models/types/shared.type';
+import type { IFailureResponse } from '@/models/interfaces/auth.interface';
+import type { TSuccessResponse } from '@/models/types/auth.type';
+import type { TLoadingTargets } from '@/models/types/shared.type';
 import type { ElLoading } from 'element-plus';
 
-import { EResponseStatus, EToast } from '@/models/enums/shared.enum';
+import { EResponseStatus } from '@/models/enums/auth.enum';
+import { EToast } from '@/models/enums/shared.enum';
 import httpService from '@/services/http.service';
 import useAuthStore from '@/stores/auth.store';
 import { useLocalStorage } from '@vueuse/core';
@@ -10,7 +12,7 @@ import { type AxiosError, type AxiosRequestConfig, type AxiosResponse, isAxiosEr
 
 const { ACCESS_TOKEN } = constants.shared.STORAGE_KEYS;
 const { DELETE, GET, PATCH, POST, PUT } = constants.shared.HTTP_METHODS;
-const { hideLoading, showLoading, showToast } = utils.shared;
+const { ERR_500 } = constants.shared.ERROR_CODES;
 
 interface IAxiosRequestConfig extends AxiosRequestConfig {
   _retry?: boolean;
@@ -24,20 +26,20 @@ const request = async <T = unknown, M = unknown>(
   url: string,
   data: unknown,
   config?: AxiosRequestConfig,
-  loadingTarget?: TLoadingTarget,
+  loadingTarget?: TLoadingTargets,
   toastMessage?: string,
 ): Promise<IFailureResponse | TSuccessResponse<T, M>> => {
   let loadingInstance: null | ReturnType<typeof ElLoading.service> = null;
 
   try {
-    loadingInstance = showLoading(loadingTarget || false);
+    loadingInstance = utils.shared.showLoading(loadingTarget || false);
 
     const response: AxiosResponse<TSuccessResponse<T, M>> = await httpService[method](
       url,
       data,
       config,
     );
-    if (toastMessage) showToast(toastMessage);
+    if (toastMessage) utils.shared.showToast(toastMessage);
 
     return {
       data: response.data.data,
@@ -46,13 +48,13 @@ const request = async <T = unknown, M = unknown>(
     } as TSuccessResponse<T, M>;
   } catch (error) {
     let errorMessage = 'An error occurred';
-    let errorCode = 500;
+    let errorCode = ERR_500;
 
-    if (isAxiosError(error)) {
-      errorMessage = error.response?.data?.error?.message || errorMessage;
-      errorCode = error.response?.data?.error?.code || errorCode;
+    if (isAxiosError<IFailureResponse>(error)) {
+      errorMessage = error.response?.data.error.message || errorMessage;
+      errorCode = error.response?.data.error.code || errorCode;
     }
-    if (toastMessage) showToast(errorMessage, EToast.Error);
+    if (toastMessage) utils.shared.showToast(errorMessage, EToast.Error);
 
     throw {
       error: {
@@ -62,7 +64,7 @@ const request = async <T = unknown, M = unknown>(
       status: EResponseStatus.Failure,
     } as IFailureResponse;
   } finally {
-    hideLoading(loadingInstance);
+    utils.shared.hideLoading(loadingInstance);
   }
 };
 
@@ -70,7 +72,7 @@ const http = {
   delete: async <T = unknown, M = unknown>(
     url: string,
     config?: AxiosRequestConfig,
-    loadingTarget?: TLoadingTarget,
+    loadingTarget?: TLoadingTargets,
     toastMessage?: string,
   ) => {
     return await request<T, M>(DELETE, url, undefined, config, loadingTarget, toastMessage);
@@ -79,13 +81,13 @@ const http = {
   get: async <T = unknown, M = unknown>(
     url: string,
     config?: AxiosRequestConfig,
-    loadingTarget?: TLoadingTarget,
+    loadingTarget?: TLoadingTargets,
     toastMessage?: string,
   ) => {
     return await request<T, M>(GET, url, undefined, config, loadingTarget, toastMessage);
   },
 
-  handleUnauthorizedError: async (error: AxiosError) => {
+  handleUnauthorizedError: async (error: AxiosError<IFailureResponse>) => {
     const authStore = useAuthStore();
     const isSuccess = await authStore.refreshToken();
 
@@ -109,7 +111,7 @@ const http = {
     url: string,
     data: unknown,
     config?: AxiosRequestConfig,
-    loadingTarget?: TLoadingTarget,
+    loadingTarget?: TLoadingTargets,
     toastMessage?: string,
   ) => {
     return await request<T, M>(PATCH, url, data, config, loadingTarget, toastMessage);
@@ -119,7 +121,7 @@ const http = {
     url: string,
     data: unknown,
     config?: AxiosRequestConfig,
-    loadingTarget?: TLoadingTarget,
+    loadingTarget?: TLoadingTargets,
     toastMessage?: string,
   ) => {
     return await request<T, M>(POST, url, data, config, loadingTarget, toastMessage);
@@ -129,7 +131,7 @@ const http = {
     url: string,
     data: unknown,
     config?: AxiosRequestConfig,
-    loadingTarget?: TLoadingTarget,
+    loadingTarget?: TLoadingTargets,
     toastMessage?: string,
   ) => {
     return await request<T, M>(PUT, url, data, config, loadingTarget, toastMessage);

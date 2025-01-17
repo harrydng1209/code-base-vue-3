@@ -1,12 +1,8 @@
-import type { IFailureResponse } from '@/models/interfaces/shared.interface';
-import type {
-  TDate,
-  TLoadingTarget,
-  TObjectUnknown,
-  TSuccessResponse,
-} from '@/models/types/shared.type';
+import type { IFailureResponse } from '@/models/interfaces/auth.interface';
+import type { TSuccessResponse } from '@/models/types/auth.type';
+import type { TDate, TLoadingTargets, TObjectUnknown } from '@/models/types/shared.type';
 
-import { EResponseStatus } from '@/models/enums/shared.enum';
+import { EResponseStatus } from '@/models/enums/auth.enum';
 import { EToast } from '@/models/enums/shared.enum';
 import storeService from '@/services/store.service';
 import dayjs from 'dayjs';
@@ -94,13 +90,22 @@ const shared = {
     }
   },
 
+  isFailureResponse(response: Error | IFailureResponse): response is IFailureResponse {
+    return (
+      typeof response === 'object' &&
+      response !== null &&
+      'status' in response &&
+      response.status === EResponseStatus.Failure
+    );
+  },
+
   isSuccessResponse<T, M>(
     response: IFailureResponse | TSuccessResponse<T, M>,
   ): response is TSuccessResponse<T, M> {
     return response.status === EResponseStatus.Success;
   },
 
-  showLoading: (target: TLoadingTarget) => {
+  showLoading: (target: TLoadingTargets) => {
     if (target === false) return null;
 
     if (target === 'fullscreen')
