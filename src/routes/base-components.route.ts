@@ -1,6 +1,7 @@
 import BaseComponents from '@/components/modules/BaseComponents.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import ErrorLayout from '@/layouts/ErrorLayout.vue';
+import { ERole } from '@/models/enums/auth.enum';
 
 const { DEVELOP } = constants.shared.NODE_ENVS;
 const { BASE_COMPONENTS } = constants.routePages;
@@ -15,8 +16,8 @@ export default {
   ],
   component: isDevelopment ? DefaultLayout : ErrorLayout,
   meta: {
-    requiresAuth: false,
-    roles: [],
+    requiresAuth: true,
+    roles: [ERole.Admin, ERole.Moderator, ERole.SuperAdmin, ERole.User],
     title: 'Base Components',
   },
   path: BASE_COMPONENTS,

@@ -37,7 +37,7 @@ const schema = yupObject({
   email: yupString()
     .required('Email is required')
     .email('Invalid email format')
-    .matches(/^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Custom email regex validation failed'),
+    .matches(/^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Invalid email format'),
   fullName: yupString()
     .required('Full name is required')
     .matches(/^[A-Za-z\s]+$/, 'Name can only contain letters and spaces'),
@@ -47,7 +47,9 @@ const schema = yupObject({
   passwordConfirm: yupString()
     .required('Password confirmation is required')
     .oneOf([yupRef('password')], 'Passwords must match'),
-  terms: yupBoolean().required().isTrue('You must agree to the terms and conditions'),
+  terms: yupBoolean()
+    .required()
+    .isTrue('You must agree to the terms and conditions'),
   type: yupString().required('Account type is required'),
 });
 const { handleSubmit, resetForm } = useForm<IForm>({
@@ -65,6 +67,7 @@ const { t } = useI18n();
 const { isDark } = useTheme();
 const { showConfirmDialog } = useConfirmDialog();
 const { pagination } = usePagination();
+const { handleCatchError } = useHandleCatchError();
 
 const baseSelect = ref<TOptions>();
 const baseMultipleSelect = ref<TOptions[]>([]);
@@ -130,7 +133,11 @@ const onSubmit = handleSubmit((values) => {
 });
 
 const handleGetHealthCheck = useDebounceFn(async () => {
-  await apis.shared.healthCheck();
+  try {
+    await apis.shared.healthCheck();
+  } catch (error) {
+    handleCatchError(error);
+  }
 }, 200);
 
 const fetchSuggestions = (
@@ -156,7 +163,8 @@ const handleCheckAllChange = (value: boolean) => {
 const handleCheckboxGroupChange = (value: string[]) => {
   const checkedCount = value.length;
   baseCheckboxAll.value = checkedCount === baseCheckboxOptions.length;
-  isIndeterminate.value = checkedCount > 0 && checkedCount < baseCheckboxOptions.length;
+  isIndeterminate.value =
+    checkedCount > 0 && checkedCount < baseCheckboxOptions.length;
 };
 
 const confirmDelete = () => {
@@ -216,7 +224,10 @@ onMounted(() => {
     <section>
       <h4>-- Base Icons SVG --</h4>
       <div class="tw-flex tw-gap-2">
-        <template v-for="(category, categoryName) in constants.iconPaths" :key="categoryName">
+        <template
+          v-for="(category, categoryName) in constants.iconPaths"
+          :key="categoryName"
+        >
           <template v-for="(iconPath, iconName) in category" :key="iconName">
             <BaseIconSvg
               v-tippy="iconPath"
@@ -232,51 +243,96 @@ onMounted(() => {
     <section>
       <h4>-- Base Buttons --</h4>
       <div class="tw-mb-4">
-        <BaseButton type="primary" @click="handleClickButton">Primary</BaseButton>
+        <BaseButton type="primary" @click="handleClickButton">
+          Primary
+        </BaseButton>
         <BaseButton type="info" @click="handleClickButton">Info</BaseButton>
-        <BaseButton type="success" @click="handleClickButton">Success</BaseButton>
-        <BaseButton type="warning" @click="handleClickButton">Warning</BaseButton>
+        <BaseButton type="success" @click="handleClickButton">
+          Success
+        </BaseButton>
+        <BaseButton type="warning" @click="handleClickButton">
+          Warning
+        </BaseButton>
         <BaseButton type="danger" @click="handleClickButton">Danger</BaseButton>
-        <BaseButton type="default" @click="handleClickButton">Default</BaseButton>
+        <BaseButton type="default" @click="handleClickButton">
+          Default
+        </BaseButton>
       </div>
 
       <div class="tw-mb-4">
-        <BaseButton type="primary" plain @click="handleClickButton">Primary</BaseButton>
-        <BaseButton type="info" plain @click="handleClickButton">Info</BaseButton>
-        <BaseButton type="success" plain @click="handleClickButton">Success</BaseButton>
-        <BaseButton type="warning" plain @click="handleClickButton">Warning</BaseButton>
-        <BaseButton type="danger" plain @click="handleClickButton">Danger</BaseButton>
-        <BaseButton type="default" plain @click="handleClickButton">Default</BaseButton>
+        <BaseButton type="primary" plain @click="handleClickButton">
+          Primary
+        </BaseButton>
+        <BaseButton type="info" plain @click="handleClickButton">
+          Info
+        </BaseButton>
+        <BaseButton type="success" plain @click="handleClickButton">
+          Success
+        </BaseButton>
+        <BaseButton type="warning" plain @click="handleClickButton">
+          Warning
+        </BaseButton>
+        <BaseButton type="danger" plain @click="handleClickButton">
+          Danger
+        </BaseButton>
+        <BaseButton type="default" plain @click="handleClickButton">
+          Default
+        </BaseButton>
       </div>
 
       <div>
         <BaseButton type="primary" circle @click="handleClickButton">
           <template #icon>
-            <BaseIconSvg width="14" height="14" :fill="WHITE" :path="LAYOUTS.SEARCH" />
+            <BaseIconSvg
+              width="14"
+              height="14"
+              :fill="WHITE"
+              :path="LAYOUTS.SEARCH"
+            />
           </template>
         </BaseButton>
 
         <BaseButton type="info" circle @click="handleClickButton">
           <template #icon>
-            <BaseIconSvg width="14" height="14" :fill="WHITE" :path="LAYOUTS.SETTINGS" />
+            <BaseIconSvg
+              width="14"
+              height="14"
+              :fill="WHITE"
+              :path="LAYOUTS.SETTINGS"
+            />
           </template>
         </BaseButton>
 
         <BaseButton type="success" circle @click="handleClickButton">
           <template #icon>
-            <BaseIconSvg width="14" height="14" :fill="WHITE" :path="LAYOUTS.DASHBOARD" />
+            <BaseIconSvg
+              width="14"
+              height="14"
+              :fill="WHITE"
+              :path="LAYOUTS.DASHBOARD"
+            />
           </template>
         </BaseButton>
 
         <BaseButton type="warning" circle @click="handleClickButton">
           <template #icon>
-            <BaseIconSvg width="14" height="14" :fill="WHITE" :path="LAYOUTS.FOLDER_SHARED" />
+            <BaseIconSvg
+              width="14"
+              height="14"
+              :fill="WHITE"
+              :path="LAYOUTS.FOLDER_SHARED"
+            />
           </template>
         </BaseButton>
 
         <BaseButton type="danger" circle @click="handleClickButton">
           <template #icon>
-            <BaseIconSvg width="14" height="14" :fill="WHITE" :path="SHARED.DELETE" />
+            <BaseIconSvg
+              width="14"
+              height="14"
+              :fill="WHITE"
+              :path="SHARED.DELETE"
+            />
           </template>
         </BaseButton>
 
@@ -340,7 +396,11 @@ onMounted(() => {
 
     <section>
       <h4>-- Base Switches --</h4>
-      <BaseSwitch v-model="baseSwitch" activeText="switch label" @change="handleChangeSwitch" />
+      <BaseSwitch
+        v-model="baseSwitch"
+        activeText="switch label"
+        @change="handleChangeSwitch"
+      />
     </section>
 
     <section>
@@ -378,7 +438,10 @@ onMounted(() => {
           class="!tw-w-[300px]"
         >
           <template #suffix>
-            <BaseIconSvg :path="LAYOUTS.SEARCH" :fill="isDark ? WHITE : BLACK" />
+            <BaseIconSvg
+              :path="LAYOUTS.SEARCH"
+              :fill="isDark ? WHITE : BLACK"
+            />
           </template>
         </BaseInput>
       </div>
@@ -414,7 +477,9 @@ onMounted(() => {
         </template>
       </BaseDialog>
 
-      <BaseButton class="tw-ml-4" @click="confirmDelete">Open Confirm Dialog</BaseButton>
+      <BaseButton class="tw-ml-4" @click="confirmDelete"
+        >Open Confirm Dialog</BaseButton
+      >
     </section>
 
     <section>
@@ -436,7 +501,10 @@ onMounted(() => {
         <ElTableColumn prop="zipCode" label="Zip Code" width="120" />
 
         <template #tfoot>
-          <BasePagination :total="pagination.total" @change="handleChangePagination" />
+          <BasePagination
+            :total="pagination.total"
+            @change="handleChangePagination"
+          />
         </template>
       </BaseTable>
 
@@ -445,7 +513,12 @@ onMounted(() => {
 
     <section>
       <h4>-- Base Forms --</h4>
-      <ElForm labelWidth="auto" labelPosition="top" style="max-width: 600px" @submit="onSubmit">
+      <ElForm
+        labelWidth="auto"
+        labelPosition="top"
+        style="max-width: 600px"
+        @submit="onSubmit"
+      >
         <div class="tw-grid tw-grid-cols-2 tw-gap-4">
           <BaseFormItem name="fullName" label="Full name">
             <template #default="{ modelValue, updateModelValue }">
@@ -513,7 +586,9 @@ onMounted(() => {
 
         <div>
           <BaseButton type="primary" nativeType="submit">Submit</BaseButton>
-          <BaseButton type="info" nativeType="button" @click="resetForm()">Reset</BaseButton>
+          <BaseButton type="info" nativeType="button" @click="resetForm()"
+            >Reset</BaseButton
+          >
         </div>
       </ElForm>
     </section>

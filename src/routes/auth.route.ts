@@ -1,4 +1,5 @@
 import Login from '@/components/modules/auth/Login.vue';
+import Register from '@/components/modules/auth/Register.vue';
 import GuestLayout from '@/layouts/GuestLayout.vue';
 
 const { AUTH } = constants.routePages;
@@ -8,6 +9,10 @@ export default {
     {
       component: Login,
       path: AUTH.LOGIN,
+    },
+    {
+      component: Register,
+      path: AUTH.REGISTER,
     },
   ],
   component: GuestLayout,

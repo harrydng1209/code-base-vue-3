@@ -13,8 +13,8 @@ export default {
   ],
   component: DefaultLayout,
   meta: {
-    requiresAuth: false,
-    roles: [ERole.Admin, ERole.Guest, ERole.Moderator, ERole.SuperAdmin, ERole.User],
+    requiresAuth: true,
+    roles: [ERole.Admin, ERole.Moderator, ERole.SuperAdmin, ERole.User],
     title: 'Home',
   },
   path: HOME,
