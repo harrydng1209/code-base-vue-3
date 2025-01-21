@@ -24,9 +24,9 @@ coverage
 *.njsproj
 *.sln
 *.sw?
-*.tsbuildinfo
 
 # Other files
+*.tsbuildinfo
 .globalsrc.json
 
 .env

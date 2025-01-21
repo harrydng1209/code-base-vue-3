@@ -11,6 +11,7 @@ export default [
   {
     ignores: [
       '**/.git/',
+      '**/.husky/',
       '**/dist/',
       '**/node_modules/',
       '**/pnpm-lock.yaml',

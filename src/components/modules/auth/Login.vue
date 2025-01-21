@@ -8,7 +8,7 @@ import { object as yupObject, string as yupString } from 'yup';
 
 const { AUTH, HOME } = constants.routePages;
 const { MODULES, SHARED } = constants.iconPaths;
-const { LOGIN_BUTTON } = constants.shared.SELECTORS;
+const { LOGIN_SECTION } = constants.shared.SELECTORS;
 
 const schema = yupObject({
   email: yupString()
@@ -50,7 +50,7 @@ const onSubmit = handleSubmit(async (values) => {
 
 <template>
   <div class="login">
-    <section>
+    <section :id="LOGIN_SECTION">
       <h4>{{ t('auth.login') }}</h4>
 
       <ElForm
@@ -102,7 +102,6 @@ const onSubmit = handleSubmit(async (values) => {
         </BaseFormItem>
 
         <BaseButton
-          :id="LOGIN_BUTTON"
           type="primary"
           nativeType="submit"
           class="tw-w-full tw-mt-2"

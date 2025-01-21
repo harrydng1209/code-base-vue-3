@@ -131,7 +131,7 @@ const shared = {
 
     if (target === 'fullscreen')
       return ElLoading.service({
-        background: 'rgba(0, 0, 0, 0.7)',
+        background: 'rgba(0, 0, 0, 0.4)',
         lock: true,
         text: 'Loading',
       });
@@ -140,8 +140,10 @@ const shared = {
     if (element) {
       element.classList.add('tw-pointer-events-none');
       return ElLoading.service({
+        background: 'rgba(0, 0, 0, 0.1)',
         lock: true,
         target: element as HTMLElement,
+        text: 'Loading',
       });
     }
     return null;
