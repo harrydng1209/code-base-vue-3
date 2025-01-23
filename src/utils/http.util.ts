@@ -16,8 +16,7 @@ import {
   isAxiosError,
 } from 'axios';
 
-const { ACCESS_TOKEN } = constants.shared.STORAGE_KEYS;
-const { ERR_500 } = constants.shared.ERROR_CODES;
+const { ERROR_CODES, STORAGE_KEYS } = constants.shared;
 const { AUTH } = constants.routePages;
 
 interface IAxiosRequestConfig extends AxiosRequestConfig {
@@ -53,7 +52,7 @@ const request = async <D = unknown, M = unknown>(
     };
     return result;
   } catch (error) {
-    let errorCode = ERR_500;
+    let errorCode = ERROR_CODES.ERR_500;
     let errorData = null;
     let errorMessage = 'An error occurred';
     let statusCode = 500;
@@ -123,7 +122,7 @@ const http = {
       return;
     }
 
-    const accessToken = useLocalStorage(ACCESS_TOKEN, '');
+    const accessToken = useLocalStorage(STORAGE_KEYS.ACCESS_TOKEN, '');
     const originalRequest = error.config as IAxiosRequestConfig;
 
     if (originalRequest) {

@@ -20,8 +20,9 @@ import {
 } from 'yup';
 
 const { LAYOUTS, SHARED } = constants.iconPaths;
-const { BLACK, WHITE } = constants.shared.COLORS;
-const { APIS_SECTION, LOADING_SECTION } = constants.shared.SELECTORS;
+const { REGEXES, SELECTORS } = constants.shared;
+const { themeColors } = constants;
+const { DEFAULT } = constants.themeColors;
 const { hideLoading, showLoading, showToast, sleep } = utils.shared;
 
 interface IForm {
@@ -37,10 +38,10 @@ const schema = yupObject({
   email: yupString()
     .required('Email is required')
     .email('Invalid email format')
-    .matches(/^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Invalid email format'),
+    .matches(REGEXES.EMAIL, 'Invalid email format'),
   fullName: yupString()
     .required('Full name is required')
-    .matches(/^[A-Za-z\s]+$/, 'Name can only contain letters and spaces'),
+    .matches(REGEXES.DISPLAY_NAME, 'Name can only contain letters and spaces'),
   password: yupString()
     .required('Password is required')
     .min(6, 'Password must be at least 6 characters long'),
@@ -64,7 +65,7 @@ const { handleSubmit, resetForm } = useForm<IForm>({
   validationSchema: toTypedSchema(schema),
 });
 const { t } = useI18n();
-const { isDark } = useTheme();
+const { theme } = useTheme();
 const { showConfirmDialog } = useConfirmDialog();
 const { pagination } = usePagination();
 const { handleCatchError } = useHandleCatchError();
@@ -191,7 +192,7 @@ const handleLoadingFullscreen = async () => {
 
 const handleLoadingSection = async () => {
   let loadingInstance: null | ReturnType<typeof ElLoading.service> = null;
-  loadingInstance = showLoading(LOADING_SECTION);
+  loadingInstance = showLoading(SELECTORS.LOADING_SECTION);
   await sleep(3);
   hideLoading(loadingInstance);
 };
@@ -210,12 +211,12 @@ onMounted(() => {
       </div>
     </section>
 
-    <section :id="APIS_SECTION">
+    <section :id="SELECTORS.APIS_SECTION">
       <h4>-- Apis --</h4>
       <BaseButton @click="handleGetHealthCheck">Health Check</BaseButton>
     </section>
 
-    <section :id="LOADING_SECTION">
+    <section :id="SELECTORS.LOADING_SECTION">
       <h4>-- The Loading --</h4>
       <BaseButton @click="handleLoadingFullscreen">Fullscreen</BaseButton>
       <BaseButton @click="handleLoadingSection">Section</BaseButton>
@@ -232,7 +233,7 @@ onMounted(() => {
             <BaseIconSvg
               v-tippy="iconPath"
               :path="String(iconPath)"
-              :fill="isDark ? WHITE : BLACK"
+              :fill="themeColors[theme].ICON_SVG"
               @click="handleClickIconSvg"
             />
           </template>
@@ -286,7 +287,7 @@ onMounted(() => {
             <BaseIconSvg
               width="14"
               height="14"
-              :fill="WHITE"
+              :fill="DEFAULT.WHITE"
               :path="LAYOUTS.SEARCH"
             />
           </template>
@@ -297,7 +298,7 @@ onMounted(() => {
             <BaseIconSvg
               width="14"
               height="14"
-              :fill="WHITE"
+              :fill="DEFAULT.WHITE"
               :path="LAYOUTS.SETTINGS"
             />
           </template>
@@ -308,7 +309,7 @@ onMounted(() => {
             <BaseIconSvg
               width="14"
               height="14"
-              :fill="WHITE"
+              :fill="DEFAULT.WHITE"
               :path="LAYOUTS.DASHBOARD"
             />
           </template>
@@ -319,7 +320,7 @@ onMounted(() => {
             <BaseIconSvg
               width="14"
               height="14"
-              :fill="WHITE"
+              :fill="DEFAULT.WHITE"
               :path="LAYOUTS.FOLDER_SHARED"
             />
           </template>
@@ -330,7 +331,7 @@ onMounted(() => {
             <BaseIconSvg
               width="14"
               height="14"
-              :fill="WHITE"
+              :fill="DEFAULT.WHITE"
               :path="SHARED.DELETE"
             />
           </template>
@@ -341,7 +342,7 @@ onMounted(() => {
             <BaseIconSvg
               width="14"
               height="14"
-              :fill="isDark ? WHITE : BLACK"
+              :fill="themeColors[theme].ICON_SVG"
               :path="LAYOUTS.NOTIFICATION"
             />
           </template>
@@ -440,7 +441,7 @@ onMounted(() => {
           <template #suffix>
             <BaseIconSvg
               :path="LAYOUTS.SEARCH"
-              :fill="isDark ? WHITE : BLACK"
+              :fill="themeColors[theme].ICON_SVG"
             />
           </template>
         </BaseInput>

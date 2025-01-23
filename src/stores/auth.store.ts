@@ -3,10 +3,10 @@ import type { IUserInfo } from '@/models/interfaces/auth.interface';
 import { useLocalStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
 
-const { ACCESS_TOKEN } = constants.shared.STORAGE_KEYS;
+const { STORAGE_KEYS } = constants.shared;
 
 const useAuthStore = defineStore('authStore', () => {
-  const accessToken = useLocalStorage(ACCESS_TOKEN, '');
+  const accessToken = useLocalStorage(STORAGE_KEYS.ACCESS_TOKEN, '');
 
   const isAuthenticated = ref<boolean>(false);
   const userInfo = ref<IUserInfo>();

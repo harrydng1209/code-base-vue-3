@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const { LAYOUTS, SHARED } = constants.iconPaths;
-const { BLACK, WHITE } = constants.shared.COLORS;
 const { AUTH, BASE_COMPONENTS, HOME } = constants.routePages;
+const { themeColors } = constants;
 
 const { t } = useI18n();
-const { isDark } = useTheme();
+const { theme } = useTheme();
 const route = useRoute();
 </script>
 
@@ -21,7 +21,7 @@ const route = useRoute();
         <ElIcon>
           <BaseIconSvg
             :path="LAYOUTS.DASHBOARD"
-            :fill="isDark ? WHITE : BLACK"
+            :fill="themeColors[theme].ICON_SVG"
           />
         </ElIcon>
         <template #title>{{ t('shared.navigator.login') }}</template>
@@ -31,7 +31,7 @@ const route = useRoute();
         <ElIcon>
           <BaseIconSvg
             :path="LAYOUTS.SETTINGS"
-            :fill="isDark ? WHITE : BLACK"
+            :fill="themeColors[theme].ICON_SVG"
           />
         </ElIcon>
         <template #title>{{ t('shared.navigator.register') }}</template>
@@ -41,7 +41,7 @@ const route = useRoute();
         <ElIcon>
           <BaseIconSvg
             :path="LAYOUTS.FOLDER_SHARED"
-            :fill="isDark ? WHITE : BLACK"
+            :fill="themeColors[theme].ICON_SVG"
           />
         </ElIcon>
         <template #title>{{ t('shared.navigator.base-components') }}</template>

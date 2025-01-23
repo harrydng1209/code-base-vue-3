@@ -3,9 +3,9 @@ import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import ErrorLayout from '@/layouts/ErrorLayout.vue';
 import { ERole } from '@/models/enums/auth.enum';
 
-const { DEVELOP } = constants.shared.NODE_ENVS;
+const { NODE_ENVS } = constants.shared;
 const { BASE_COMPONENTS } = constants.routePages;
-const isDevelopment = import.meta.env.VITE_NODE_ENV === DEVELOP;
+const isDevelopment = import.meta.env.VITE_NODE_ENV === NODE_ENVS.DEVELOP;
 
 export default {
   children: [

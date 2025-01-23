@@ -11,7 +11,7 @@ import axios, {
 } from 'axios';
 import qs from 'qs';
 
-const { ACCESS_TOKEN } = constants.shared.STORAGE_KEYS;
+const { STORAGE_KEYS } = constants.shared;
 
 const httpService = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -24,7 +24,7 @@ const httpService = axios.create({
 
 httpService.interceptors.request.use(
   (config) => {
-    const accessToken = useLocalStorage(ACCESS_TOKEN, '');
+    const accessToken = useLocalStorage(STORAGE_KEYS.ACCESS_TOKEN, '');
 
     if (config.data && !(config.data instanceof FormData))
       config.data = utils.shared.convertToSnakeCase(config.data);
