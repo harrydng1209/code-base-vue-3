@@ -28,6 +28,7 @@ coverage
 # Other files
 *.tsbuildinfo
 .globalsrc.json
+vite.config.ts.timestamp-*
 
 .env
 .env.*

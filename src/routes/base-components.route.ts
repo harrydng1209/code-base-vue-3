@@ -5,7 +5,7 @@ import { ERole } from '@/models/enums/auth.enum';
 
 const { NODE_ENVS } = constants.shared;
 const { BASE_COMPONENTS } = constants.routePages;
-const isDevelopment = import.meta.env.VITE_NODE_ENV === NODE_ENVS.DEVELOP;
+const isDevelop = import.meta.env.VITE_NODE_ENV === NODE_ENVS.DEVELOP;
 
 export default {
   children: [
@@ -14,7 +14,7 @@ export default {
       path: '',
     },
   ],
-  component: isDevelopment ? DefaultLayout : ErrorLayout,
+  component: isDevelop ? DefaultLayout : ErrorLayout,
   meta: {
     requiresAuth: true,
     roles: [ERole.Admin, ERole.Moderator, ERole.SuperAdmin, ERole.User],

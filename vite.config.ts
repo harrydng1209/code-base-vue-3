@@ -1,5 +1,4 @@
 import vue from '@vitejs/plugin-vue';
-import 'dotenv/config';
 import { fileURLToPath, URL } from 'node:url';
 import autoImport from 'unplugin-auto-import/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
