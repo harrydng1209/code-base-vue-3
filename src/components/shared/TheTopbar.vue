@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import TheBreadcrumb from '@/components/layouts/TheBreadcrumb.vue';
+import IconDarkMode from '@/assets/icons/shared/IconDarkMode.vue';
+import IconEnglish from '@/assets/icons/shared/IconEnglish.vue';
+import IconJapanese from '@/assets/icons/shared/IconJapanese.vue';
+import IconLightMode from '@/assets/icons/shared/IconLightMode.vue';
+import IconNotification from '@/assets/icons/shared/IconNotification.vue';
+import IconVietnamese from '@/assets/icons/shared/IconVietnamese.vue';
+import TheBreadcrumb from '@/components/shared/TheBreadcrumb.vue';
 import { notifications } from '@/mocks/the-topbar.mock';
 import { ELanguageCode } from '@/models/enums/shared.enum';
 import useAuthStore from '@/stores/auth.store';
 
-const { LAYOUTS, SHARED } = constants.iconPaths;
 const { AUTH } = constants.routePages;
 const { themeColors } = constants;
 
@@ -20,9 +25,9 @@ const i18nOptions = Object.entries(ELanguageCode).map(([key, value]) => ({
 
 const getIconPathForLanguage = (lang: ELanguageCode) => {
   const iconPaths = {
-    [ELanguageCode.English]: LAYOUTS.ENGLISH,
-    [ELanguageCode.Japanese]: LAYOUTS.JAPANESE,
-    [ELanguageCode.Vietnamese]: LAYOUTS.VIETNAMESE,
+    [ELanguageCode.English]: IconEnglish,
+    [ELanguageCode.Japanese]: IconJapanese,
+    [ELanguageCode.Vietnamese]: IconVietnamese,
   };
   return iconPaths[lang];
 };
@@ -34,21 +39,21 @@ const handleLogout = async () => {
 </script>
 
 <template>
-  <div class="the-topbar">
+  <div class="container">
     <section class="tw-flex-center">
       <TheBreadcrumb />
     </section>
 
-    <section class="the-topbar__profile">
-      <BaseIconSvg
-        :path="isDark ? SHARED.LIGHT_MODE : SHARED.DARK_MODE"
-        :fill="themeColors[theme].ICON_SVG"
+    <section class="container__menu">
+      <component
+        :is="isDark ? IconLightMode : IconDarkMode"
         @click="changeTheme()"
+        :fill="themeColors[theme].ICON_SVG"
       />
 
       <BaseDropdown>
         <span>
-          <BaseIconSvg :path="getIconPathForLanguage(language)" />
+          <component :is="getIconPathForLanguage(language)" />
         </span>
 
         <template #dropdown>
@@ -59,7 +64,7 @@ const handleLogout = async () => {
               @click="setLanguage(item.value)"
             >
               <div class="tw-flex-center tw-gap-2">
-                <BaseIconSvg :path="getIconPathForLanguage(item.value)" />
+                <component :is="getIconPathForLanguage(item.value)" />
                 <p>{{ item.label }}</p>
               </div>
             </ElDropdownItem>
@@ -70,10 +75,7 @@ const handleLogout = async () => {
       <BaseDropdown>
         <span>
           <ElBadge :value="notifications.length">
-            <BaseIconSvg
-              :path="LAYOUTS.NOTIFICATION"
-              :fill="themeColors[theme].ICON_SVG"
-            />
+            <IconNotification :fill="themeColors[theme].ICON_SVG" />
           </ElBadge>
         </span>
 
@@ -114,5 +116,13 @@ const handleLogout = async () => {
 </template>
 
 <style scoped lang="scss">
-@import '@/assets/styles/layouts/the-topbar.scss';
+.container {
+  height: var(--el-header-height);
+  background-color: var(--v-background-content-color);
+  @include flexbox-style(0, space-between, center);
+
+  &__menu {
+    @include flexbox-style(30px, space-between, center);
+  }
+}
 </style>

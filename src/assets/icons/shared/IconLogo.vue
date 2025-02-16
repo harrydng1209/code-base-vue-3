@@ -1,10 +1,10 @@
 <template>
   <svg
-    class="logo"
     viewBox="0 0 128 128"
     width="24"
     height="24"
     data-v-b1a6e290=""
+    class="tw-cursor-pointer tw-outline-none"
   >
     <path
       fill="#42b883"

@@ -4,7 +4,6 @@ import en from 'element-plus/dist/locale/en.mjs';
 import ja from 'element-plus/dist/locale/ja.mjs';
 import vi from 'element-plus/dist/locale/vi.mjs';
 
-useTheme();
 const { language } = useLanguage();
 
 const locale = computed(() => {

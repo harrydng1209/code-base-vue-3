@@ -2,6 +2,12 @@
 import type { TDate, TOptions } from '@/models/types/shared.type';
 import type { ElLoading } from 'element-plus';
 
+import IconDashboard from '@/assets/icons/shared/IconDashboard.vue';
+import IconDelete from '@/assets/icons/shared/IconDelete.vue';
+import IconFolderShared from '@/assets/icons/shared/IconFolderShared.vue';
+import IconNotification from '@/assets/icons/shared/IconNotification.vue';
+import IconSearch from '@/assets/icons/shared/IconSearch.vue';
+import IconSettings from '@/assets/icons/shared/IconSettings.vue';
 import {
   baseCheckboxOptions,
   baseSelectOptions,
@@ -19,7 +25,6 @@ import {
   string as yupString,
 } from 'yup';
 
-const { LAYOUTS, SHARED } = constants.iconPaths;
 const { REGEXES, SELECTORS } = constants.shared;
 const { themeColors } = constants;
 const { DEFAULT } = constants.themeColors;
@@ -28,38 +33,39 @@ const { hideLoading, showLoading, showToast, sleep } = utils.shared;
 interface IForm {
   email: string;
   fullName: string;
+  isTerms: boolean;
   password: string;
   passwordConfirm: string;
-  terms: boolean;
   type: string;
 }
+
+type TIcons = Record<string, () => Promise<{ default: Component }>>;
 
 const schema = yupObject({
   email: yupString()
     .required('Email is required')
-    .email('Invalid email format')
     .matches(REGEXES.EMAIL, 'Invalid email format'),
   fullName: yupString()
     .required('Full name is required')
     .matches(REGEXES.DISPLAY_NAME, 'Name can only contain letters and spaces'),
+  isTerms: yupBoolean()
+    .required()
+    .isTrue('You must agree to the terms and conditions'),
   password: yupString()
     .required('Password is required')
     .min(6, 'Password must be at least 6 characters long'),
   passwordConfirm: yupString()
     .required('Password confirmation is required')
     .oneOf([yupRef('password')], 'Passwords must match'),
-  terms: yupBoolean()
-    .required()
-    .isTrue('You must agree to the terms and conditions'),
   type: yupString().required('Account type is required'),
 });
 const { handleSubmit, resetForm } = useForm<IForm>({
   initialValues: {
     email: '',
     fullName: '',
+    isTerms: false,
     password: '',
     passwordConfirm: '',
-    terms: false,
     type: '',
   },
   validationSchema: toTypedSchema(schema),
@@ -77,13 +83,14 @@ const baseInputNumber = ref<number>(0);
 const baseAutocomplete = ref<string>('');
 const baseDatePicker = ref<TDate>(Date.now());
 const baseTimePicker = ref<TDate>(Date.now());
-const baseSwitch = ref<boolean>(true);
-const baseDialog = ref<boolean>(false);
-const baseCheckbox = ref<boolean>(false);
+const isBaseSwitch = ref<boolean>(true);
+const isBaseDialog = ref<boolean>(false);
+const isBaseCheckbox = ref<boolean>(false);
 const baseCheckboxGroup = ref<string[]>([]);
-const baseCheckboxAll = ref<boolean>(false);
+const isBaseCheckboxAll = ref<boolean>(false);
 const isIndeterminate = ref<boolean>(false);
 const searchInput = ref<string>('');
+const svgIcons = ref<Record<string, Component>>({});
 
 const handleClickButton = useDebounceFn(() => {
   showToast('handleClickButton');
@@ -118,7 +125,7 @@ const handleChangeSwitch = (value: boolean) => {
 };
 
 const handleDialog = () => {
-  baseDialog.value = false;
+  isBaseDialog.value = false;
   showToast('handleConfirmDialog', EToast.Info);
 };
 
@@ -163,7 +170,7 @@ const handleCheckAllChange = (value: boolean) => {
 
 const handleCheckboxGroupChange = (value: string[]) => {
   const checkedCount = value.length;
-  baseCheckboxAll.value = checkedCount === baseCheckboxOptions.length;
+  isBaseCheckboxAll.value = checkedCount === baseCheckboxOptions.length;
   isIndeterminate.value =
     checkedCount > 0 && checkedCount < baseCheckboxOptions.length;
 };
@@ -197,13 +204,27 @@ const handleLoadingSection = async () => {
   hideLoading(loadingInstance);
 };
 
+const loadSvgIcons = async () => {
+  const icons = import.meta.glob('@/assets/icons/**/*.vue') as TIcons;
+
+  for (const path in icons) {
+    const iconName = path.split('/').pop();
+
+    if (iconName) {
+      const iconComponent = await icons[path]();
+      svgIcons.value[iconName] = markRaw(iconComponent.default);
+    }
+  }
+};
+
 onMounted(() => {
   pagination.value.total = 1000;
+  loadSvgIcons();
 });
 </script>
 
 <template>
-  <div class="base-components">
+  <div class="container">
     <section>
       <h4>-- i18n --</h4>
       <div class="tw-flex tw-items-center tw-gap-4">
@@ -212,7 +233,7 @@ onMounted(() => {
     </section>
 
     <section :id="SELECTORS.APIS_SECTION">
-      <h4>-- Apis --</h4>
+      <h4>-- APIs --</h4>
       <BaseButton @click="handleGetHealthCheck">Health Check</BaseButton>
     </section>
 
@@ -223,21 +244,15 @@ onMounted(() => {
     </section>
 
     <section>
-      <h4>-- Base Icons SVG --</h4>
+      <h4>-- SVG Icons --</h4>
       <div class="tw-flex tw-gap-2">
-        <template
-          v-for="(category, categoryName) in constants.iconPaths"
-          :key="categoryName"
-        >
-          <template v-for="(iconPath, iconName) in category" :key="iconName">
-            <BaseIconSvg
-              v-tippy="iconPath"
-              :path="String(iconPath)"
-              :fill="themeColors[theme].ICON_SVG"
-              @click="handleClickIconSvg"
-            />
-          </template>
-        </template>
+        <component
+          v-for="(iconComponent, iconName) in svgIcons"
+          :key="iconName"
+          :is="iconComponent"
+          @click="handleClickIconSvg"
+          v-tippy="iconName"
+        />
       </div>
     </section>
 
@@ -284,67 +299,37 @@ onMounted(() => {
       <div>
         <BaseButton type="primary" circle @click="handleClickButton">
           <template #icon>
-            <BaseIconSvg
-              width="14"
-              height="14"
-              :fill="DEFAULT.WHITE"
-              :path="LAYOUTS.SEARCH"
-            />
+            <IconSearch :fill="DEFAULT.WHITE" />
           </template>
         </BaseButton>
 
         <BaseButton type="info" circle @click="handleClickButton">
           <template #icon>
-            <BaseIconSvg
-              width="14"
-              height="14"
-              :fill="DEFAULT.WHITE"
-              :path="LAYOUTS.SETTINGS"
-            />
+            <IconSettings :fill="DEFAULT.WHITE" />
           </template>
         </BaseButton>
 
         <BaseButton type="success" circle @click="handleClickButton">
           <template #icon>
-            <BaseIconSvg
-              width="14"
-              height="14"
-              :fill="DEFAULT.WHITE"
-              :path="LAYOUTS.DASHBOARD"
-            />
+            <IconDashboard :fill="DEFAULT.WHITE" />
           </template>
         </BaseButton>
 
         <BaseButton type="warning" circle @click="handleClickButton">
           <template #icon>
-            <BaseIconSvg
-              width="14"
-              height="14"
-              :fill="DEFAULT.WHITE"
-              :path="LAYOUTS.FOLDER_SHARED"
-            />
+            <IconFolderShared :fill="DEFAULT.WHITE" />
           </template>
         </BaseButton>
 
         <BaseButton type="danger" circle @click="handleClickButton">
           <template #icon>
-            <BaseIconSvg
-              width="14"
-              height="14"
-              :fill="DEFAULT.WHITE"
-              :path="SHARED.DELETE"
-            />
+            <IconDelete />
           </template>
         </BaseButton>
 
         <BaseButton type="default" circle @click="handleClickButton">
           <template #icon>
-            <BaseIconSvg
-              width="14"
-              height="14"
-              :fill="themeColors[theme].ICON_SVG"
-              :path="LAYOUTS.NOTIFICATION"
-            />
+            <IconNotification :fill="themeColors[theme].ICON_SVG" />
           </template>
         </BaseButton>
       </div>
@@ -375,13 +360,13 @@ onMounted(() => {
     <section>
       <h4>-- Base Checkboxes --</h4>
       <div>
-        <BaseCheckbox v-model="baseCheckbox" @change="handleChangeCheckbox">
+        <BaseCheckbox v-model="isBaseCheckbox" @change="handleChangeCheckbox">
           checkbox label
         </BaseCheckbox>
       </div>
 
       <BaseCheckbox
-        v-model="baseCheckboxAll"
+        v-model="isBaseCheckboxAll"
         :indeterminate="isIndeterminate"
         class="tw-mt-4"
         @change="handleCheckAllChange"
@@ -398,7 +383,7 @@ onMounted(() => {
     <section>
       <h4>-- Base Switches --</h4>
       <BaseSwitch
-        v-model="baseSwitch"
+        v-model="isBaseSwitch"
         activeText="switch label"
         @change="handleChangeSwitch"
       />
@@ -439,10 +424,7 @@ onMounted(() => {
           class="!tw-w-[300px]"
         >
           <template #suffix>
-            <BaseIconSvg
-              :path="LAYOUTS.SEARCH"
-              :fill="themeColors[theme].ICON_SVG"
-            />
+            <IconSearch :fill="themeColors[theme].ICON_SVG" />
           </template>
         </BaseInput>
       </div>
@@ -468,8 +450,8 @@ onMounted(() => {
 
     <section>
       <h4>-- Base Dialogs --</h4>
-      <BaseButton @click="baseDialog = true">Open Dialog</BaseButton>
-      <BaseDialog v-model="baseDialog" title="Dialog Title" width="500">
+      <BaseButton @click="isBaseDialog = true">Open Dialog</BaseButton>
+      <BaseDialog v-model="isBaseDialog" title="Dialog Title" width="500">
         <span>This is a dialog content</span>
         <template #footer>
           <div class="dialog-footer">
@@ -577,7 +559,7 @@ onMounted(() => {
           </BaseFormItem>
         </div>
 
-        <BaseFormItem name="terms">
+        <BaseFormItem name="isTerms">
           <template #default="{ modelValue, updateModelValue }">
             <BaseCheckbox :modelValue="modelValue" @change="updateModelValue">
               Agree to terms and conditions
@@ -587,9 +569,9 @@ onMounted(() => {
 
         <div>
           <BaseButton type="primary" nativeType="submit">Submit</BaseButton>
-          <BaseButton type="info" nativeType="button" @click="resetForm()"
-            >Reset</BaseButton
-          >
+          <BaseButton type="info" nativeType="button" @click="resetForm()">
+            Reset
+          </BaseButton>
         </div>
       </ElForm>
     </section>
@@ -597,5 +579,29 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
-@import '@/assets/styles/modules/base-components.scss';
+.container {
+  padding: 20px;
+  @include flexbox-style(0, unset, unset, column);
+
+  > section {
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      border-bottom: 1px dashed var(--v-text-color);
+    }
+  }
+
+  h4 {
+    margin: 0;
+    margin-bottom: 8px;
+  }
+}
 </style>

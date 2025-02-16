@@ -5,6 +5,7 @@
     width="24"
     height="24"
     style="border-radius: 50%; overflow: hidden"
+    class="tw-cursor-pointer tw-outline-none"
   >
     <defs>
       <clipPath id="a">

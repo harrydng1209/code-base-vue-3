@@ -11,6 +11,7 @@
     xml:space="preserve"
     width="24"
     height="24"
+    class="tw-cursor-pointer tw-outline-none"
   >
     <circle style="fill: #f0f0f0" cx="256" cy="256" r="256" />
     <g>

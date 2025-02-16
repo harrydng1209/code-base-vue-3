@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const { LAYOUTS, SHARED } = constants.iconPaths;
+import IconDashboard from '@/assets/icons/shared/IconDashboard.vue';
+import IconFolderShared from '@/assets/icons/shared/IconFolderShared.vue';
+import IconLogo from '@/assets/icons/shared/IconLogo.vue';
+import IconSettings from '@/assets/icons/shared/IconSettings.vue';
+
 const { AUTH, BASE_COMPONENTS, HOME } = constants.routePages;
 const { themeColors } = constants;
 
@@ -9,40 +13,31 @@ const route = useRoute();
 </script>
 
 <template>
-  <div class="the-sidebar">
-    <div class="the-sidebar__logo">
+  <div class="container">
+    <div class="container__logo">
       <RouterLink :to="HOME">
-        <BaseIconSvg :path="SHARED.LOGO" />
+        <IconLogo />
       </RouterLink>
     </div>
 
     <ElMenu :defaultActive="route.path" :collapse="false" :router="true">
       <ElMenuItem :index="AUTH.LOGIN">
         <ElIcon>
-          <BaseIconSvg
-            :path="LAYOUTS.DASHBOARD"
-            :fill="themeColors[theme].ICON_SVG"
-          />
+          <IconDashboard :fill="themeColors[theme].ICON_SVG" />
         </ElIcon>
         <template #title>{{ t('shared.navigator.login') }}</template>
       </ElMenuItem>
 
       <ElMenuItem :index="AUTH.REGISTER">
         <ElIcon>
-          <BaseIconSvg
-            :path="LAYOUTS.SETTINGS"
-            :fill="themeColors[theme].ICON_SVG"
-          />
+          <IconSettings :fill="themeColors[theme].ICON_SVG" />
         </ElIcon>
         <template #title>{{ t('shared.navigator.register') }}</template>
       </ElMenuItem>
 
       <ElMenuItem :index="BASE_COMPONENTS">
         <ElIcon>
-          <BaseIconSvg
-            :path="LAYOUTS.FOLDER_SHARED"
-            :fill="themeColors[theme].ICON_SVG"
-          />
+          <IconFolderShared :fill="themeColors[theme].ICON_SVG" />
         </ElIcon>
         <template #title>{{ t('shared.navigator.base-components') }}</template>
       </ElMenuItem>
@@ -51,5 +46,21 @@ const route = useRoute();
 </template>
 
 <style scoped lang="scss">
-@import '@/assets/styles/layouts/the-sidebar.scss';
+.container {
+  height: calc(100% - 24px);
+
+  .el-menu {
+    height: calc(100% - 30px - $layout-margin - (24px * 3));
+    border-right: 0;
+    background-color: var(--v-background-content-color);
+  }
+
+  &__logo {
+    width: 24px;
+    height: 24px;
+    margin: 20px auto;
+    cursor: pointer;
+    @include flexbox-style;
+  }
+}
 </style>

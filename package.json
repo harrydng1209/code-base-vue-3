@@ -11,8 +11,11 @@
     "url": "https://github.com/harrydng1209"
   },
   "engines": {
-    "node": ">=20.x",
-    "npm": ">=10.x"
+    "node": ">= 22",
+    "pnpm": ">= 10",
+    "npm": "please-use-pnpm",
+    "yarn": "please-use-pnpm",
+    "bun": "please-use-pnpm"
   },
   "scripts": {
     "dev": "vite",
