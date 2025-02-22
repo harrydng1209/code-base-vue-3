@@ -10,6 +10,9 @@ export default {
           '@apply tw-fixed tw-top-1/2 tw-left-1/2 tw-transform tw-translate-x-[-50%] tw-translate-y-[-50%]':
             {},
         },
+        '.flex-between': {
+          '@apply tw-flex tw-justify-between tw-items-center': {},
+        },
         '.flex-center': {
           '@apply tw-flex tw-justify-center tw-items-center': {},
         },
