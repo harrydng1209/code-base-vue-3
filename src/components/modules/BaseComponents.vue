@@ -247,9 +247,9 @@ onMounted(() => {
       <h4>-- SVG Icons --</h4>
       <div class="tw-flex tw-gap-2">
         <component
-          v-for="(iconComponent, iconName) in svgIcons"
+          v-for="(IconComponent, iconName) in svgIcons"
           :key="iconName"
-          :is="iconComponent"
+          :is="IconComponent"
           @click="handleClickIconSvg"
           v-tippy="iconName"
         />
