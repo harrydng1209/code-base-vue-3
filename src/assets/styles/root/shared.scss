@@ -41,3 +41,8 @@ h6 {
 p {
   @include text-style;
 }
+
+svg {
+  cursor: pointer;
+  outline: none;
+}

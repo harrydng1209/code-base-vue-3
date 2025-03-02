@@ -2,12 +2,12 @@
 import type { TDate, TOptions } from '@/models/types/shared.type';
 import type { ElLoading } from 'element-plus';
 
-import IconDashboard from '@/assets/icons/shared/IconDashboard.vue';
-import IconDelete from '@/assets/icons/shared/IconDelete.vue';
-import IconFolderShared from '@/assets/icons/shared/IconFolderShared.vue';
-import IconNotification from '@/assets/icons/shared/IconNotification.vue';
-import IconSearch from '@/assets/icons/shared/IconSearch.vue';
-import IconSettings from '@/assets/icons/shared/IconSettings.vue';
+import IconDashboard from '@/assets/icons/shared/IconDashboard.svg';
+import IconDelete from '@/assets/icons/shared/IconDelete.svg';
+import IconFolderShared from '@/assets/icons/shared/IconFolderShared.svg';
+import IconNotification from '@/assets/icons/shared/IconNotification.svg';
+import IconSearch from '@/assets/icons/shared/IconSearch.svg';
+import IconSettings from '@/assets/icons/shared/IconSettings.svg';
 import {
   baseCheckboxOptions,
   baseSelectOptions,
@@ -39,7 +39,7 @@ interface IForm {
   type: string;
 }
 
-type TIcons = Record<string, () => Promise<{ default: Component }>>;
+type TIcons = Record<string, { default: Component }>;
 
 const schema = yupObject({
   email: yupString()
@@ -90,7 +90,7 @@ const baseCheckboxGroup = ref<string[]>([]);
 const isBaseCheckboxAll = ref<boolean>(false);
 const isIndeterminate = ref<boolean>(false);
 const searchInput = ref<string>('');
-const svgIcons = ref<Record<string, Component>>({});
+const svgIcons = shallowRef<Record<string, Component>>({});
 
 const handleClickButton = useDebounceFn(() => {
   showToast('handleClickButton');
@@ -205,16 +205,14 @@ const handleLoadingSection = async () => {
 };
 
 const loadSvgIcons = async () => {
-  const icons = import.meta.glob('@/assets/icons/**/*.vue') as TIcons;
+  const icons: TIcons = import.meta.glob('@/assets/icons/**/*.svg', {
+    eager: true,
+  });
 
-  for (const path in icons) {
-    const iconName = path.split('/').pop();
-
-    if (iconName) {
-      const iconComponent = await icons[path]();
-      svgIcons.value[iconName] = markRaw(iconComponent.default);
-    }
-  }
+  Object.entries(icons).forEach(([path, module]) => {
+    const iconName = path.split('/').pop()?.replace('.svg', '');
+    if (iconName) svgIcons.value[iconName] = module.default;
+  });
 };
 
 onMounted(() => {

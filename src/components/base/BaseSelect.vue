@@ -19,7 +19,7 @@ defineExpose({ innerRef });
   <ElSelect ref="innerRef" v-bind="$attrs">
     <ElOption
       v-for="(item, index) in props.options"
-      :key="item.id || index"
+      :key="item.key || index"
       :label="item.label"
       :value="item.value"
     />

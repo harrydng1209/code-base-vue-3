@@ -16,7 +16,7 @@ const slots: Slots = useSlots();
   <ElCheckboxGroup v-bind="$attrs">
     <ElCheckbox
       v-for="(item, index) in props.options"
-      :key="item.id || index"
+      :key="item.key || index"
       :label="item.label"
       :value="item.value"
       :class="{ 'no-slot': !slots.default }"

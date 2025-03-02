@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import IconDarkMode from '@/assets/icons/shared/IconDarkMode.vue';
-import IconEnglish from '@/assets/icons/shared/IconEnglish.vue';
-import IconJapanese from '@/assets/icons/shared/IconJapanese.vue';
-import IconLightMode from '@/assets/icons/shared/IconLightMode.vue';
-import IconNotification from '@/assets/icons/shared/IconNotification.vue';
-import IconVietnamese from '@/assets/icons/shared/IconVietnamese.vue';
+import IconDarkMode from '@/assets/icons/shared/IconDarkMode.svg';
+import IconEnglish from '@/assets/icons/shared/IconEnglish.svg';
+import IconJapanese from '@/assets/icons/shared/IconJapanese.svg';
+import IconLightMode from '@/assets/icons/shared/IconLightMode.svg';
+import IconNotification from '@/assets/icons/shared/IconNotification.svg';
+import IconVietnamese from '@/assets/icons/shared/IconVietnamese.svg';
 import TheBreadcrumb from '@/components/shared/TheBreadcrumb.vue';
 import { notifications } from '@/mocks/the-topbar.mock';
 import { ELanguageCode } from '@/models/enums/shared.enum';

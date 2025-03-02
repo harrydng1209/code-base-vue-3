@@ -26,7 +26,7 @@ export default [
   configPrettier,
 
   {
-    files: ['**/*.{cjs,cts,mjs,mts,js,jsx,ts,tsx,vue}'],
+    files: ['**/*.{cjs,cts,mjs,mts,js,ts,vue}'],
 
     languageOptions: {
       globals: {

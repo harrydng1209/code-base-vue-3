@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import IconDashboard from '@/assets/icons/shared/IconDashboard.vue';
-import IconFolderShared from '@/assets/icons/shared/IconFolderShared.vue';
-import IconLogo from '@/assets/icons/shared/IconLogo.vue';
-import IconSettings from '@/assets/icons/shared/IconSettings.vue';
+import IconDashboard from '@/assets/icons/shared/IconDashboard.svg';
+import IconFolderShared from '@/assets/icons/shared/IconFolderShared.svg';
+import IconLogo from '@/assets/icons/shared/IconLogo.svg';
+import IconSettings from '@/assets/icons/shared/IconSettings.svg';
 
 const { AUTH, BASE_COMPONENTS, HOME } = constants.routePages;
 const { themeColors } = constants;

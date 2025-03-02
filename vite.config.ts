@@ -5,6 +5,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import components from 'unplugin-vue-components/vite';
 import { defineConfig } from 'vite';
 import vueDevTools from 'vite-plugin-vue-devtools';
+import svgLoader from 'vite-svg-loader';
 
 export default defineConfig({
   css: {
@@ -21,6 +22,7 @@ export default defineConfig({
   plugins: [
     vue(),
     vueDevTools(),
+    svgLoader(),
 
     autoImport({
       dirs: ['src/composables/shared/**'],
