@@ -458,9 +458,9 @@ onMounted(() => {
         </template>
       </BaseDialog>
 
-      <BaseButton class="tw-ml-4" @click="confirmDelete"
-        >Open Confirm Dialog</BaseButton
-      >
+      <BaseButton class="tw-ml-4" @click="confirmDelete">
+        Open Confirm Dialog
+      </BaseButton>
     </section>
 
     <section>

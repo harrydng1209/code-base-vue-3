@@ -16,7 +16,7 @@ export default {
   ],
   component: isDevelop ? DefaultLayout : ErrorLayout,
   meta: {
-    requiresAuth: false,
+    requiresAuth: true,
     roles: [ERole.Admin, ERole.Moderator, ERole.SuperAdmin, ERole.User],
     title: 'Base Components',
   },
