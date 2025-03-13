@@ -33,16 +33,17 @@ const request = async <D = unknown, M = unknown>(
   loadingTarget?: TLoadingTargets,
   toastMessage?: string,
 ) => {
+  const { hideLoading, showLoading, showToast } = utils.shared;
   let loadingInstance: null | ReturnType<typeof ElLoading.service> = null;
 
   try {
-    loadingInstance = utils.shared.showLoading(loadingTarget || false);
+    if (loadingTarget) loadingInstance = showLoading(loadingTarget);
 
     const response: AxiosResponse<TSuccessResponse<D, M>> = await httpService[
       method
     ](url, data, config);
 
-    if (toastMessage) utils.shared.showToast(toastMessage);
+    if (toastMessage) showToast(toastMessage);
 
     const result: TSuccessResponse<D, M> = {
       data: response.data.data,
@@ -75,7 +76,7 @@ const request = async <D = unknown, M = unknown>(
     };
     return Promise.reject(result);
   } finally {
-    utils.shared.hideLoading(loadingInstance);
+    hideLoading(loadingInstance);
   }
 };
 
