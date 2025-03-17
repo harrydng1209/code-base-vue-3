@@ -40,7 +40,7 @@ export default defineConfig({
         'vue-i18n',
         {
           from: 'vue',
-          imports: ['App', 'Slots'],
+          imports: ['App'],
           type: true,
         },
         {
@@ -55,7 +55,7 @@ export default defineConfig({
     }),
 
     components({
-      dirs: ['src/components/base/**'],
+      dirs: ['src/components/shared/**'],
       dts: 'src/@types/components.d.ts',
       resolvers: [ElementPlusResolver()],
 
