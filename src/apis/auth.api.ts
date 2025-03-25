@@ -5,43 +5,39 @@ import type {
   IUserInfo,
 } from '@/models/interfaces/auth.interface';
 
-const { AUTH } = constants.routeApis;
-const { SELECTORS } = constants.shared;
-const { get, post } = utils.http;
+import { AUTH } from '@/constants/route-apis.const';
+import { SELECTORS } from '@/constants/shared.const';
+import { get, post } from '@/utils/http.util';
 
-const auth = {
-  login: async (data: ILoginRequest) => {
-    const url = AUTH.LOGIN;
-    return await post<ILoginResponse>(
-      url,
-      data,
-      { withCredentials: true },
-      SELECTORS.LOGIN_SECTION,
-    );
-  },
-
-  profile: async () => {
-    const url = AUTH.PROFILE;
-    return await get<IUserInfo>(url);
-  },
-
-  refreshToken: async () => {
-    const url = AUTH.REFRESH_TOKEN;
-    return await post<ILoginResponse>(url, undefined, {
-      withCredentials: true,
-    });
-  },
-
-  register: async (data: IRegister) => {
-    const url = AUTH.REGISTER;
-    return await post<unknown>(
-      url,
-      data,
-      undefined,
-      SELECTORS.REGISTER_SECTION,
-      'Registration successful',
-    );
-  },
+export const login = async (data: ILoginRequest) => {
+  const url = AUTH.LOGIN;
+  return await post<ILoginResponse>(
+    url,
+    data,
+    { withCredentials: true },
+    SELECTORS.LOGIN_SECTION,
+  );
 };
 
-export default auth;
+export const profile = async () => {
+  const url = AUTH.PROFILE;
+  return await get<IUserInfo>(url);
+};
+
+export const refreshToken = async () => {
+  const url = AUTH.REFRESH_TOKEN;
+  return await post<ILoginResponse>(url, undefined, {
+    withCredentials: true,
+  });
+};
+
+export const register = async (data: IRegister) => {
+  const url = AUTH.REGISTER;
+  return await post<unknown>(
+    url,
+    data,
+    undefined,
+    SELECTORS.REGISTER_SECTION,
+    'Registration successful',
+  );
+};

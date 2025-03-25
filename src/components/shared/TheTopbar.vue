@@ -5,17 +5,17 @@ import IconJapanese from '@/assets/icons/shared/IconJapanese.svg';
 import IconLightMode from '@/assets/icons/shared/IconLightMode.svg';
 import IconNotification from '@/assets/icons/shared/IconNotification.svg';
 import IconVietnamese from '@/assets/icons/shared/IconVietnamese.svg';
+import useThemeColor from '@/composables/shared/use-theme-color';
+import { AUTH } from '@/constants/route-pages.const';
 import { notifications } from '@/mocks/the-topbar.mock';
 import { ELanguageCode } from '@/models/enums/shared.enum';
 import useAuthStore from '@/stores/auth.store';
 
-const { AUTH } = constants.routePages;
-const { themeColors } = constants;
-
-const { changeTheme, isDark, theme } = useTheme();
+const { changeTheme, isDark } = useTheme();
 const { language, setLanguage } = useLanguage();
 const authStore = useAuthStore();
 const router = useRouter();
+const { getThemeColor } = useThemeColor();
 
 const i18nOptions = Object.entries(ELanguageCode).map(([key, value]) => ({
   label: key,
@@ -47,7 +47,7 @@ const handleLogout = async () => {
       <component
         :is="isDark ? IconLightMode : IconDarkMode"
         @click="changeTheme()"
-        :fill="themeColors[theme].ICON_SVG"
+        :fill="getThemeColor('ICON_SVG')"
       />
 
       <BaseDropdown>
@@ -74,7 +74,7 @@ const handleLogout = async () => {
       <BaseDropdown>
         <span>
           <ElBadge :value="notifications.length">
-            <IconNotification :fill="themeColors[theme].ICON_SVG" />
+            <IconNotification :fill="getThemeColor('ICON_SVG')" />
           </ElBadge>
         </span>
 

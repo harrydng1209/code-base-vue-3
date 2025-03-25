@@ -1,7 +1,6 @@
+import { STORAGE_KEYS } from '@/constants/shared.const';
 import { ELanguageCode } from '@/models/enums/shared.enum';
 import { useLocalStorage } from '@vueuse/core';
-
-const { STORAGE_KEYS } = constants.shared;
 
 const useLanguage = () => {
   const { locale } = useI18n();

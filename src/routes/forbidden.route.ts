@@ -1,6 +1,5 @@
+import { FORBIDDEN } from '@/constants/route-pages.const';
 import ErrorLayout from '@/layouts/ErrorLayout.vue';
-
-const { FORBIDDEN } = constants.routePages;
 
 export default {
   component: ErrorLayout,

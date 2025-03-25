@@ -2,12 +2,16 @@
 import type { TDate, TOptions } from '@/models/types/shared.type';
 import type { ElLoading } from 'element-plus';
 
+import { healthCheck } from '@/apis/shared.api';
 import IconDashboard from '@/assets/icons/shared/IconDashboard.svg';
 import IconDelete from '@/assets/icons/shared/IconDelete.svg';
 import IconFolderShared from '@/assets/icons/shared/IconFolderShared.svg';
 import IconNotification from '@/assets/icons/shared/IconNotification.svg';
 import IconSearch from '@/assets/icons/shared/IconSearch.svg';
 import IconSettings from '@/assets/icons/shared/IconSettings.svg';
+import useThemeColor from '@/composables/shared/use-theme-color';
+import { REGEXES, SELECTORS } from '@/constants/shared.const';
+import { DEFAULT } from '@/constants/theme-colors.const';
 import {
   baseCheckboxOptions,
   baseSelectOptions,
@@ -15,6 +19,12 @@ import {
   tableData,
 } from '@/mocks/base-components.mock';
 import { EToast } from '@/models/enums/shared.enum';
+import {
+  hideLoading,
+  showLoading,
+  showToast,
+  sleep,
+} from '@/utils/shared.util';
 import { toTypedSchema } from '@vee-validate/yup';
 import { useDebounceFn } from '@vueuse/core';
 import { useForm } from 'vee-validate';
@@ -24,11 +34,6 @@ import {
   ref as yupRef,
   string as yupString,
 } from 'yup';
-
-const { REGEXES, SELECTORS } = constants.shared;
-const { themeColors } = constants;
-const { DEFAULT } = constants.themeColors;
-const { hideLoading, showLoading, showToast, sleep } = utils.shared;
 
 interface IForm {
   email: string;
@@ -71,10 +76,10 @@ const { handleSubmit, resetForm } = useForm<IForm>({
   validationSchema: toTypedSchema(schema),
 });
 const { t } = useI18n();
-const { theme } = useTheme();
 const { showConfirmDialog } = useConfirmDialog();
 const { pagination } = usePagination();
 const { handleCatchError } = useHandleCatchError();
+const { getThemeColor } = useThemeColor();
 
 const baseSelect = ref<TOptions>();
 const baseMultipleSelect = ref<TOptions[]>([]);
@@ -142,7 +147,7 @@ const onSubmit = handleSubmit((values) => {
 
 const handleGetHealthCheck = useDebounceFn(async () => {
   try {
-    await apis.shared.healthCheck();
+    await healthCheck();
   } catch (error) {
     handleCatchError(error);
   }
@@ -327,7 +332,7 @@ onMounted(() => {
 
         <BaseButton type="default" circle @click="handleClickButton">
           <template #icon>
-            <IconNotification :fill="themeColors[theme].ICON_SVG" />
+            <IconNotification :fill="getThemeColor('ICON_SVG')" />
           </template>
         </BaseButton>
       </div>
@@ -422,7 +427,7 @@ onMounted(() => {
           class="!tw-w-[300px]"
         >
           <template #suffix>
-            <IconSearch :fill="themeColors[theme].ICON_SVG" />
+            <IconSearch :fill="getThemeColor('ICON_SVG')" />
           </template>
         </BaseInput>
       </div>

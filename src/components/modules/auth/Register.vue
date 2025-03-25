@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import type { IRegister } from '@/models/interfaces/auth.interface';
 
+import { register } from '@/apis/auth.api';
 import IconEye from '@/assets/icons/modules/auth/IconEye.svg';
 import IconEyeClosed from '@/assets/icons/modules/auth/IconEyeClosed.svg';
 import IconRequired from '@/assets/icons/shared/IconRequired.svg';
+import { AUTH } from '@/constants/route-pages.const';
+import { REGEXES } from '@/constants/shared.const';
+import { SELECTORS } from '@/constants/shared.const';
 import { toTypedSchema } from '@vee-validate/yup';
 import { useForm } from 'vee-validate';
 import { object as yupObject, ref as yupRef, string as yupString } from 'yup';
-
-const { AUTH } = constants.routePages;
-const { REGEXES, SELECTORS } = constants.shared;
 
 const schema = yupObject({
   displayName: yupString()
@@ -55,7 +56,7 @@ const toggleIsShowPasswordConfirm = () => {
 
 const onSubmit = handleSubmit(async (values) => {
   try {
-    await apis.auth.register(values);
+    await register(values);
     await router.push(AUTH.LOGIN);
   } catch (error) {
     const errorData = handleCatchError<{ fields: (keyof IRegister)[] }>(error);

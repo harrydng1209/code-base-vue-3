@@ -1,13 +1,12 @@
 import type { ERole } from '@/models/enums/auth.enum';
 
+import { AUTH, FORBIDDEN } from '@/constants/route-pages.const';
 import useAuthStore from '@/stores/auth.store';
 import {
   createRouter,
   createWebHistory,
   type RouteRecordRaw,
 } from 'vue-router';
-
-const { AUTH, FORBIDDEN } = constants.routePages;
 
 type TModules = Record<string, { default: RouteRecordRaw }>;
 

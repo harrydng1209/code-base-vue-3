@@ -10,8 +10,7 @@ export type TActions =
   | 'read'
   | 'update';
 
-export type TErrorCodes =
-  (typeof constants.shared.ERROR_CODES)[keyof typeof constants.shared.ERROR_CODES];
+export type TErrorCodes = (typeof ERROR_CODES)[keyof typeof ERROR_CODES];
 
 export type TFailureResponse<D = unknown> = {
   error: {

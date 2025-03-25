@@ -1,7 +1,6 @@
+import { STORAGE_KEYS } from '@/constants/shared.const';
 import { useDark } from '@vueuse/core';
 import { useToggle } from '@vueuse/shared';
-
-const { STORAGE_KEYS } = constants.shared;
 
 const useTheme = () => {
   const isDark = useDark({

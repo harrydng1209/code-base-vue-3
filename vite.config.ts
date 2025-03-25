@@ -25,7 +25,12 @@ export default defineConfig({
     svgLoader(),
 
     autoImport({
-      dirs: ['src/composables/shared/**'],
+      dirs: [
+        'src/apis/**',
+        'src/composables/shared/**',
+        'src/constants/**',
+        'src/utils/**',
+      ],
       dts: 'src/@types/auto-imports.d.ts',
 
       eslintrc: {
@@ -42,11 +47,6 @@ export default defineConfig({
           from: 'vue',
           imports: ['App'],
           type: true,
-        },
-        {
-          '@/apis': [['default', 'apis']],
-          '@/constants': [['default', 'constants']],
-          '@/utils': [['default', 'utils']],
         },
       ],
 
