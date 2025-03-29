@@ -7,13 +7,17 @@ import type {
 
 import { EResponseStatus } from '@/models/enums/auth.enum';
 import { EToast } from '@/models/enums/shared.enum';
-import storeService from '@/services/store.service';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { ElLoading, ElNotification } from 'element-plus';
 import { capitalize } from 'lodash-es';
+import { getActivePinia, type Pinia, type Store } from 'pinia';
 import qs from 'qs';
 import stringTemplate from 'string-template';
+
+interface IPinia extends Pinia {
+  storeMap: Map<string, Store>;
+}
 
 dayjs.extend(utc);
 
@@ -167,10 +171,22 @@ export const sleep = async (second: number) => {
   });
 };
 
-export const storeDisposeAll = () => {
-  storeService.disposeAll();
+export const disposeAll = () => {
+  try {
+    const pinia = getActivePinia() as IPinia;
+    if (!pinia) throw new Error('There is no active Pinia instance');
+    pinia.storeMap.forEach((store) => store.$dispose());
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const storeResetAll = () => {
-  storeService.resetAll();
+export const resetAll = () => {
+  try {
+    const pinia = getActivePinia() as IPinia;
+    if (!pinia) throw new Error('There is no active Pinia instance');
+    pinia.storeMap.forEach((store) => store.$reset());
+  } catch (error) {
+    console.error(error);
+  }
 };

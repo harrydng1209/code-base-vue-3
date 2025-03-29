@@ -4,7 +4,7 @@ import type {
 } from '@/models/types/auth.type';
 
 import { STORAGE_KEYS } from '@/constants/shared.const';
-import { handleUnauthorizedError } from '@/utils/http.util';
+import { handleUnauthorizedError } from '@/utils/api.util';
 import { convertToCamelCase, convertToSnakeCase } from '@/utils/shared.util';
 import { useLocalStorage } from '@vueuse/core';
 import axios, {
@@ -14,7 +14,7 @@ import axios, {
 } from 'axios';
 import qs from 'qs';
 
-const httpService = axios.create({
+const apiConfig = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080',
   headers: {
     Accept: 'application/json',
@@ -23,7 +23,7 @@ const httpService = axios.create({
   paramsSerializer: (params) => qs.stringify(params, { indices: true }),
 });
 
-httpService.interceptors.request.use(
+apiConfig.interceptors.request.use(
   (config) => {
     const accessToken = useLocalStorage(STORAGE_KEYS.ACCESS_TOKEN, '');
 
@@ -37,18 +37,19 @@ httpService.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-httpService.interceptors.response.use(
+apiConfig.interceptors.response.use(
   (response: AxiosResponse<TSuccessResponse>) => {
     if (response.data) response.data = convertToCamelCase(response.data);
     return response;
   },
   (error: AxiosError<TFailureResponse>) => {
-    const status = error.response?.status;
+    const statusCode = error.response?.status;
 
-    if (status === HttpStatusCode.Unauthorized) handleUnauthorizedError(error);
+    if (statusCode === HttpStatusCode.Unauthorized)
+      handleUnauthorizedError(error);
 
     return Promise.reject(error);
   },
 );
 
-export default httpService;
+export default apiConfig;

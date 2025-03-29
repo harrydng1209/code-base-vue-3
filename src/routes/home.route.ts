@@ -12,7 +12,7 @@ export default {
   ],
   component: DefaultLayout,
   meta: {
-    requiresAuth: false,
+    requiresAuth: true,
     roles: [ERole.Admin, ERole.Moderator, ERole.SuperAdmin, ERole.User],
     title: 'Home',
   },

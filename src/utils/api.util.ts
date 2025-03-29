@@ -5,10 +5,10 @@ import type {
 import type { TLoadingTargets } from '@/models/types/shared.type';
 import type { ElLoading } from 'element-plus';
 
+import apiConfig from '@/configs/api.config';
 import { AUTH } from '@/constants/route-pages.const';
 import { ERROR_CODES, STORAGE_KEYS } from '@/constants/shared.const';
 import { EResponseStatus } from '@/models/enums/auth.enum';
-import httpService from '@/services/http.service';
 import useAuthStore from '@/stores/auth.store';
 import { hideLoading, showLoading, showToast } from '@/utils/shared.util';
 import { useLocalStorage } from '@vueuse/core';
@@ -23,10 +23,10 @@ interface IAxiosRequestConfig extends AxiosRequestConfig {
   _retry?: boolean;
 }
 
-type THttpMethods = 'delete' | 'get' | 'patch' | 'post' | 'put';
+type TMethods = 'delete' | 'get' | 'patch' | 'post' | 'put';
 
 const request = async <D = unknown, M = unknown>(
-  method: THttpMethods,
+  method: TMethods,
   url: string,
   data: unknown,
   config?: AxiosRequestConfig,
@@ -38,7 +38,7 @@ const request = async <D = unknown, M = unknown>(
   try {
     if (loadingTarget) loadingInstance = showLoading(loadingTarget);
 
-    const response: AxiosResponse<TSuccessResponse<D, M>> = await httpService[
+    const response: AxiosResponse<TSuccessResponse<D, M>> = await apiConfig[
       method
     ](url, data, config);
 
@@ -132,7 +132,7 @@ export const handleUnauthorizedError = async (
 
     if (!originalRequest._retry) {
       originalRequest._retry = true;
-      await httpService(originalRequest);
+      await apiConfig(originalRequest);
     }
   }
 };
