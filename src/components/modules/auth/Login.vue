@@ -5,7 +5,7 @@ import { login } from '@/apis/auth.api';
 import IconEye from '@/assets/icons/modules/auth/IconEye.svg';
 import IconEyeClosed from '@/assets/icons/modules/auth/IconEyeClosed.svg';
 import IconRequired from '@/assets/icons/shared/IconRequired.svg';
-import { AUTH, HOME } from '@/constants/route-pages.const';
+import { AUTH_PAGES, HOME } from '@/constants/route-pages.const';
 import { REGEXES, SELECTORS } from '@/constants/shared.const';
 import useAuthStore from '@/stores/auth.store';
 import { toTypedSchema } from '@vee-validate/yup';
@@ -109,7 +109,9 @@ const onSubmit = handleSubmit(async (values) => {
 
       <div class="container__register-now">
         <p>{{ t('auth.noAccount') }}</p>
-        <RouterLink :to="AUTH.REGISTER">{{ t('auth.registerNow') }}</RouterLink>
+        <RouterLink :to="AUTH_PAGES.REGISTER">
+          {{ t('auth.registerNow') }}
+        </RouterLink>
       </div>
     </section>
   </div>

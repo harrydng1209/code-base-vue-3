@@ -5,7 +5,7 @@ import { register } from '@/apis/auth.api';
 import IconEye from '@/assets/icons/modules/auth/IconEye.svg';
 import IconEyeClosed from '@/assets/icons/modules/auth/IconEyeClosed.svg';
 import IconRequired from '@/assets/icons/shared/IconRequired.svg';
-import { AUTH } from '@/constants/route-pages.const';
+import { AUTH_PAGES } from '@/constants/route-pages.const';
 import { REGEXES } from '@/constants/shared.const';
 import { SELECTORS } from '@/constants/shared.const';
 import { toTypedSchema } from '@vee-validate/yup';
@@ -57,7 +57,7 @@ const toggleIsShowPasswordConfirm = () => {
 const onSubmit = handleSubmit(async (values) => {
   try {
     await register(values);
-    await router.push(AUTH.LOGIN);
+    await router.push(AUTH_PAGES.LOGIN);
   } catch (error) {
     const errorData = handleCatchError<{ fields: (keyof IRegister)[] }>(error);
     if (errorData?.fields && Array.isArray(errorData.fields))
@@ -181,7 +181,7 @@ const onSubmit = handleSubmit(async (values) => {
 
       <div class="container__login-now">
         <p>{{ t('auth.hasAccount') }}</p>
-        <RouterLink :to="AUTH.LOGIN">{{ t('auth.loginNow') }}</RouterLink>
+        <RouterLink :to="AUTH_PAGES.LOGIN">{{ t('auth.loginNow') }}</RouterLink>
       </div>
     </section>
   </div>

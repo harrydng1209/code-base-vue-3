@@ -1,6 +1,6 @@
 import type { ERole } from '@/models/enums/auth.enum';
 
-import { AUTH, FORBIDDEN } from '@/constants/route-pages.const';
+import { AUTH_PAGES, FORBIDDEN } from '@/constants/route-pages.const';
 import useAuthStore from '@/stores/auth.store';
 import {
   createRouter,
@@ -35,7 +35,7 @@ const vueRouterPlugin = {
         await authStore.initialize();
 
         if (!authStore.getAuthenticated) {
-          next({ path: AUTH.LOGIN });
+          next({ path: AUTH_PAGES.LOGIN });
           return;
         }
 

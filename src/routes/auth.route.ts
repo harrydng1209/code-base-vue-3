@@ -1,17 +1,17 @@
 import Login from '@/components/modules/auth/Login.vue';
 import Register from '@/components/modules/auth/Register.vue';
-import { AUTH } from '@/constants/route-pages.const';
+import { AUTH_PAGES } from '@/constants/route-pages.const';
 import GuestLayout from '@/layouts/GuestLayout.vue';
 
 export default {
   children: [
     {
       component: Login,
-      path: AUTH.LOGIN,
+      path: AUTH_PAGES.LOGIN,
     },
     {
       component: Register,
-      path: AUTH.REGISTER,
+      path: AUTH_PAGES.REGISTER,
     },
   ],
   component: GuestLayout,
@@ -20,5 +20,5 @@ export default {
     roles: [],
     title: 'Authentication',
   },
-  path: AUTH.ROOT,
+  path: AUTH_PAGES.ROOT,
 };
