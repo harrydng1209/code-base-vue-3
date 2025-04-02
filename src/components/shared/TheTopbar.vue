@@ -5,11 +5,11 @@ import IconJapanese from '@/assets/icons/shared/IconJapanese.svg';
 import IconLightMode from '@/assets/icons/shared/IconLightMode.svg';
 import IconNotification from '@/assets/icons/shared/IconNotification.svg';
 import IconVietnamese from '@/assets/icons/shared/IconVietnamese.svg';
-import useThemeColor from '@/composables/shared/use-theme-color';
+import { useThemeColor } from '@/composables/shared/use-theme-color';
 import { AUTH_PAGES } from '@/constants/route-pages.const';
 import { notifications } from '@/mocks/the-topbar.mock';
 import { ELanguageCode } from '@/models/enums/shared.enum';
-import useAuthStore from '@/stores/auth.store';
+import { useAuthStore } from '@/stores/auth.store';
 
 const { changeTheme, isDark } = useTheme();
 const { language, setLanguage } = useLanguage();

@@ -1,3 +1,3 @@
 <template>
-  <div>Code Base Vue 3</div>
+  <div>Codebase Vue 3</div>
 </template>

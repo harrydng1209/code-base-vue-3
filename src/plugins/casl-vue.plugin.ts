@@ -1,7 +1,7 @@
 import type { IPermission } from '@/models/interfaces/auth.interface';
 
 import { ERole } from '@/models/enums/auth.enum';
-import useAuthStore from '@/stores/auth.store';
+import { useAuthStore } from '@/stores/auth.store';
 import { AbilityBuilder, createMongoAbility, PureAbility } from '@casl/ability';
 import { abilitiesPlugin } from '@casl/vue';
 
@@ -21,7 +21,7 @@ const defineAbilitiesFor = (role: ERole): PureAbility => {
   return build();
 };
 
-const caslVuePlugin = {
+export const caslVuePlugin = {
   install(app: App) {
     const authStore = useAuthStore();
     const ability = defineAbilitiesFor(ERole.Guest);
@@ -34,5 +34,3 @@ const caslVuePlugin = {
     });
   },
 };
-
-export default caslVuePlugin;

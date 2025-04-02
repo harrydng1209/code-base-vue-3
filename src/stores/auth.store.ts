@@ -5,7 +5,7 @@ import { STORAGE_KEYS } from '@/constants/shared.const';
 import { useLocalStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
 
-const useAuthStore = defineStore('authStore', () => {
+export const useAuthStore = defineStore('authStore', () => {
   const accessToken = useLocalStorage(STORAGE_KEYS.ACCESS_TOKEN, '');
 
   const isAuthenticated = ref<boolean>(false);
@@ -66,5 +66,3 @@ const useAuthStore = defineStore('authStore', () => {
 
   return { ...getGetters(), ...getActions() };
 });
-
-export default useAuthStore;

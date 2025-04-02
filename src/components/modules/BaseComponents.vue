@@ -9,7 +9,7 @@ import IconFolderShared from '@/assets/icons/shared/IconFolderShared.svg';
 import IconNotification from '@/assets/icons/shared/IconNotification.svg';
 import IconSearch from '@/assets/icons/shared/IconSearch.svg';
 import IconSettings from '@/assets/icons/shared/IconSettings.svg';
-import useThemeColor from '@/composables/shared/use-theme-color';
+import { useThemeColor } from '@/composables/shared/use-theme-color';
 import { REGEXES, SELECTORS } from '@/constants/shared.const';
 import { DEFAULT } from '@/constants/theme-colors.const';
 import {

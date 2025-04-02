@@ -7,7 +7,7 @@ import IconEyeClosed from '@/assets/icons/modules/auth/IconEyeClosed.svg';
 import IconRequired from '@/assets/icons/shared/IconRequired.svg';
 import { AUTH_PAGES, HOME } from '@/constants/route-pages.const';
 import { REGEXES, SELECTORS } from '@/constants/shared.const';
-import useAuthStore from '@/stores/auth.store';
+import { useAuthStore } from '@/stores/auth.store';
 import { toTypedSchema } from '@vee-validate/yup';
 import { useForm } from 'vee-validate';
 import { object as yupObject, string as yupString } from 'yup';

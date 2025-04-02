@@ -5,11 +5,11 @@ import type {
 import type { TLoadingTargets } from '@/models/types/shared.type';
 import type { ElLoading } from 'element-plus';
 
-import apiConfig from '@/configs/api.config';
+import { apiConfig } from '@/configs/api.config';
 import { AUTH_PAGES } from '@/constants/route-pages.const';
 import { ERROR_CODES, STORAGE_KEYS } from '@/constants/shared.const';
 import { EResponseStatus } from '@/models/enums/auth.enum';
-import useAuthStore from '@/stores/auth.store';
+import { useAuthStore } from '@/stores/auth.store';
 import { hideLoading, showLoading, showToast } from '@/utils/shared.util';
 import { useLocalStorage } from '@vueuse/core';
 import {

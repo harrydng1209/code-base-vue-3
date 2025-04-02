@@ -1,7 +1,7 @@
 import type { ERole } from '@/models/enums/auth.enum';
 
 import { AUTH_PAGES, FORBIDDEN } from '@/constants/route-pages.const';
-import useAuthStore from '@/stores/auth.store';
+import { useAuthStore } from '@/stores/auth.store';
 import {
   createRouter,
   createWebHistory,
@@ -19,7 +19,7 @@ Object.keys(modules).forEach((key) => {
   routes.push(modules[key].default);
 });
 
-const vueRouterPlugin = {
+export const vueRouterPlugin = {
   install(app: App) {
     const router = createRouter({
       history: createWebHistory(),
@@ -57,5 +57,3 @@ const vueRouterPlugin = {
     app.use(router);
   },
 };
-
-export default vueRouterPlugin;

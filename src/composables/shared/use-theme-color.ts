@@ -5,7 +5,7 @@ interface ICustomColors {
   LIGHT?: string;
 }
 
-const useThemeColor = () => {
+export const useThemeColor = () => {
   const { theme } = useTheme();
 
   const getThemeColor = (
@@ -21,5 +21,3 @@ const useThemeColor = () => {
 
   return { getThemeColor };
 };
-
-export default useThemeColor;

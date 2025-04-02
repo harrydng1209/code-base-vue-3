@@ -12,10 +12,8 @@ const options = {
   directive: 'tippy',
 };
 
-const vueTippyPlugin = {
+export const vueTippyPlugin = {
   install(app: App) {
     app.use(vueTippy, options);
   },
 };
-
-export default vueTippyPlugin;

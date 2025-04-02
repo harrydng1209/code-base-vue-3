@@ -29,7 +29,7 @@ Object.keys(locales).forEach((path) => {
   Object.assign(messages[locale], data);
 });
 
-const vueI18nPlugin = {
+export const vueI18nPlugin = {
   install: (app: App) => {
     const i18n = createI18n({
       legacy: false,
@@ -40,5 +40,3 @@ const vueI18nPlugin = {
     app.use(i18n);
   },
 };
-
-export default vueI18nPlugin;
