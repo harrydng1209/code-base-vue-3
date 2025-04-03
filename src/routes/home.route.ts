@@ -1,7 +1,7 @@
-import Home from '@/components/modules/Home.vue';
 import { HOME } from '@/constants/route-pages.const';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import { ERole } from '@/models/enums/auth.enum';
+import Home from '@/pages/Home.vue';
 
 export default {
   children: [

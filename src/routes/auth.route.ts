@@ -1,7 +1,7 @@
-import Login from '@/components/modules/auth/Login.vue';
-import Register from '@/components/modules/auth/Register.vue';
 import { AUTH_PAGES } from '@/constants/route-pages.const';
 import GuestLayout from '@/layouts/GuestLayout.vue';
+import Login from '@/pages/auth/Login.vue';
+import Register from '@/pages/auth/Register.vue';
 
 export default {
   children: [
