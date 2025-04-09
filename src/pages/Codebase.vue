@@ -17,7 +17,7 @@ import {
   baseSelectOptions,
   suggestions,
   tableData,
-} from '@/mocks/base-components.mock';
+} from '@/mocks/codebase.mock';
 import { EToast } from '@/models/enums/shared.enum';
 import {
   hideLoading,

@@ -1,16 +1,16 @@
-import { BASE_COMPONENTS } from '@/constants/route-pages.const';
+import { CODEBASE } from '@/constants/route-pages.const';
 import { NODE_ENVS } from '@/constants/shared.const';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import ErrorLayout from '@/layouts/ErrorLayout.vue';
 import { ERole } from '@/models/enums/auth.enum';
-import BaseComponents from '@/pages/BaseComponents.vue';
+import Codebase from '@/pages/Codebase.vue';
 
 const isDevelop = import.meta.env.VITE_NODE_ENV === NODE_ENVS.DEVELOP;
 
 export default {
   children: [
     {
-      component: BaseComponents,
+      component: Codebase,
       path: '',
     },
   ],
@@ -18,7 +18,7 @@ export default {
   meta: {
     requiresAuth: true,
     roles: [ERole.Admin, ERole.Moderator, ERole.SuperAdmin, ERole.User],
-    title: 'Base Components',
+    title: 'Codebase',
   },
-  path: BASE_COMPONENTS,
+  path: CODEBASE,
 };

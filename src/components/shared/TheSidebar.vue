@@ -5,7 +5,7 @@ import IconLogo from '@/assets/icons/shared/IconLogo.svg';
 import IconSettings from '@/assets/icons/shared/IconSettings.svg';
 import { useThemeColor } from '@/composables/shared/use-theme-color';
 import { HOME } from '@/constants/route-pages.const';
-import { AUTH_PAGES, BASE_COMPONENTS } from '@/constants/route-pages.const';
+import { AUTH_PAGES, CODEBASE } from '@/constants/route-pages.const';
 
 const { t } = useI18n();
 const route = useRoute();
@@ -35,11 +35,11 @@ const { getThemeColor } = useThemeColor();
         <template #title>{{ t('shared.navigator.register') }}</template>
       </ElMenuItem>
 
-      <ElMenuItem :index="BASE_COMPONENTS">
+      <ElMenuItem :index="CODEBASE">
         <ElIcon>
           <IconFolderShared :fill="getThemeColor('ICON_SVG')" />
         </ElIcon>
-        <template #title>{{ t('shared.navigator.base-components') }}</template>
+        <template #title>{{ t('shared.navigator.codebase') }}</template>
       </ElMenuItem>
     </ElMenu>
   </div>
