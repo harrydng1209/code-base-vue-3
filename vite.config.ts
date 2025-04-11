@@ -1,6 +1,6 @@
 import vue from '@vitejs/plugin-vue';
 import { fileURLToPath, URL } from 'node:url';
-import autoImport from 'unplugin-auto-import/vite';
+import autoImports from 'unplugin-auto-import/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import components from 'unplugin-vue-components/vite';
 import { defineConfig } from 'vite';
@@ -24,7 +24,7 @@ export default defineConfig({
     vueDevTools(),
     svgLoader(),
 
-    autoImport({
+    autoImports({
       dirs: [
         'src/apis/**',
         'src/composables/shared/**',
