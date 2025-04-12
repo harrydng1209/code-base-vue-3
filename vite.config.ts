@@ -31,6 +31,7 @@ export default defineConfig({
         'src/constants/**',
         'src/utils/**',
       ],
+
       dts: 'src/@types/auto-imports.d.ts',
 
       eslintrc: {
