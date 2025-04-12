@@ -6,18 +6,19 @@ import { createI18n } from 'vue-i18n';
 type TLocales = Record<string, { default: TObjectString }>;
 type TMessages = Record<ELanguageCode, TObjectString>;
 
-const locales: TLocales = import.meta.glob('@/locales/**/*.json', {
+const locales: TLocales = import.meta.glob('../../locales/**/*.json', {
   eager: true,
 });
+
 const messages: TMessages = Object.values(ELanguageCode).reduce((acc, lang) => {
   acc[lang] = {};
   return acc;
 }, {} as TMessages);
 
 Object.keys(locales).forEach((path) => {
-  const match = path.match(/\/src\/locales\/(.*?)\/(.*?)\.json$/);
+  const match = path.match(/\/locales\/(.*?)\.json$/);
 
-  if (!match || !match[1] || !match[2]) return;
+  if (!match || !match[1]) return;
 
   const locale = match[1] as ELanguageCode;
   const data = locales[path].default;
