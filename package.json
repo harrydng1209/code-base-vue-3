@@ -1,6 +1,6 @@
 {
-  "name": "codebase-vue-3",
-  "description": "This template will help you get started with Vue 3 in Vite",
+  "name": "codebase-vue",
+  "description": "This template will help you get started with Vue in Vite",
   "version": "0.1.0",
   "license": "MIT",
   "type": "module",

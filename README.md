@@ -1,11 +1,11 @@
-# codebase-vue-3
+# codebase-vue
 
-This template will help you get started with Vue 3 in Vite
+This template will help you get started with Vue in Vite
 
 ## Overview
 
-- **Name**: codebase-vue-3
-- **Description**: This template will help you get started with Vue 3 in Vite
+- **Name**: codebase-vue
+- **Description**: This template will help you get started with Vue in Vite
 - **Version**: 0.1.0
 - **License**: MIT
 - **Type**: Module
@@ -46,7 +46,7 @@ This project includes several scripts to assist with development:
 To get started with this template, clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/harrydng1209/codebase-vue-3.git
-cd codebase-vue-3
+git clone https://github.com/harrydng1209/codebase-vue.git
+cd codebase-vue
 pnpm install
 ```
