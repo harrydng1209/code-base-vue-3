@@ -13,7 +13,6 @@ import { ElLoading, ElNotification } from 'element-plus';
 import { capitalize } from 'lodash-es';
 import { getActivePinia, type Pinia, type Store } from 'pinia';
 import { stringify } from 'qs';
-import stringTemplate from 'string-template';
 
 interface IPinia extends Pinia {
   storeMap: Map<string, Store>;
@@ -97,13 +96,6 @@ export const formatQueryString = (
       ? query
       : stringify(query, { arrayFormat: 'brackets' });
   return `${baseUrl}?${queryString}`;
-};
-
-export const formatString = (
-  template: string,
-  values: TObjectUnknown | unknown[],
-): string => {
-  return stringTemplate(template, values);
 };
 
 export const hideLoading = (
