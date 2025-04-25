@@ -29,7 +29,7 @@ This template will help you get started with Vue in Vite
 
 This project includes several scripts to assist with development:
 
-- `dev`: Start the development server using Vite
+- `dev`: Start the development server
 - `build`: Run type checks and build the project
 - `preview`: Preview the built project
 - `build-only`: Build the project without additional checks

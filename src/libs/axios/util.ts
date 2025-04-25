@@ -5,9 +5,9 @@ import type {
 import type { TLoadingTargets } from '@/models/types/shared.type';
 import type { ElLoading } from 'element-plus';
 
-import { apiConfig } from '@/configs/api.config';
 import { AUTH_PAGES } from '@/constants/route-pages.const';
 import { ERROR_CODES, STORAGE_KEYS } from '@/constants/shared.const';
+import { axiosInstance } from '@/libs/axios/config';
 import { EResponseStatus } from '@/models/enums/auth.enum';
 import { useAuthStore } from '@/stores/auth.store';
 import { hideLoading, showLoading, showToast } from '@/utils/shared.util';
@@ -38,7 +38,7 @@ const request = async <D = unknown, M = unknown>(
   try {
     if (loadingTarget) loadingInstance = showLoading(loadingTarget);
 
-    const response: AxiosResponse<TSuccessResponse<D, M>> = await apiConfig[
+    const response: AxiosResponse<TSuccessResponse<D, M>> = await axiosInstance[
       method
     ](url, data, config);
 
@@ -132,7 +132,7 @@ export const handleUnauthorizedError = async (
 
     if (!originalRequest._retry) {
       originalRequest._retry = true;
-      await apiConfig(originalRequest);
+      await axiosInstance(originalRequest);
     }
   }
 };
