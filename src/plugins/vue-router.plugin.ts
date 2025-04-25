@@ -34,7 +34,7 @@ export const vueRouterPlugin = {
       if (to.matched.some((item) => item.meta.requiresAuth)) {
         await authStore.initialize();
 
-        if (!authStore.getIsAuthenticated) {
+        if (!authStore.isAuthenticated) {
           next({ path: AUTH_PAGES.LOGIN });
           return;
         }
