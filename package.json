@@ -43,6 +43,7 @@
   "dependencies": {
     "@casl/ability": "^6.7.2",
     "@casl/vue": "^2.2.2",
+    "@tanstack/vue-query": "^5.75.1",
     "@vee-validate/yup": "^4.13.2",
     "@vueuse/core": "^12.5.0",
     "@vueuse/shared": "^12.5.0",
@@ -80,8 +81,8 @@
     "eslint-plugin-perfectionist": "^4.6.0",
     "eslint-plugin-vue": "^9.32.0",
     "globals": "^15.14.0",
-    "husky": "^9.1.6",
-    "lint-staged": "^15.2.10",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
     "npm-run-all2": "^6.2.0",
     "postcss": "^8.4.47",
     "prettier": "^3.4.2",
